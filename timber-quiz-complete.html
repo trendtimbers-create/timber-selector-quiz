@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Timber for Furniture Making | Trend Timbers</title>
+    <meta name="description" content="Discover the ideal wood species for your furniture project through our comprehensive timber selector quiz. Get personalized recommendations based on your project type, budget, and preferences.">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #228B22;
+            --text-dark: #2C1810;
+            --text-light: #666;
+            --background: #FAF7F2;
+            --surface: #FFFFFF;
+            --border: #E0D5C7;
+            --success: #228B22;
+            --warning: #FF8C00;
+            --danger: #DC3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .quiz-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .question-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .question-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-btn {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .option-btn:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .option-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .results-container {
+            display: none;
+        }
+
+        .results-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .results-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .recommendation-rank {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .timber-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-range {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .timber-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .property {
+            background: var(--background);
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .property-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .property-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .why-perfect {
+            background: rgba(34, 139, 34, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tag {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            display: none;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+
+            .question-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Quiz Header -->
+        <div class="quiz-header">
+            <h1>🪵 Find Your Perfect Timber for Furniture Making</h1>
+            <p>Discover the ideal wood species for your furniture project through our specialized quiz. Get personalized recommendations based on your project type, budget, and woodworking preferences.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Ready to Start</div>
+        </div>
+
+        <!-- Question 1: Project Type -->
+        <div class="question-card active" id="question1">
+            <h2 class="question-title">What type of furniture project are you making?</h2>
+            <p class="question-subtitle">Choose the category that best describes your project:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="fine-furniture">
+                    <div class="option-title">Fine Furniture</div>
+                    <div class="option-description">Dining tables, chairs, dressers, bedroom sets</div>
+                </div>
+                <div class="option-btn" data-value="cabinets">
+                    <div class="option-title">Cabinets & Storage</div>
+                    <div class="option-description">Kitchen cabinets, wardrobes, built-in storage</div>
+                </div>
+                <div class="option-btn" data-value="small-items">
+                    <div class="option-title">Small Items</div>
+                    <div class="option-description">Jewelry boxes, picture frames, decorative pieces</div>
+                </div>
+                <div class="option-btn" data-value="turned-items">
+                    <div class="option-title">Turned Items</div>
+                    <div class="option-description">Bowls, vases, spindles, lamp bases</div>
+                </div>
+                <div class="option-btn" data-value="carved-projects">
+                    <div class="option-title">Carved Projects</div>
+                    <div class="option-description">Sculptures, decorative carvings, artistic pieces</div>
+                </div>
+                <div class="option-btn" data-value="kitchen-items">
+                    <div class="option-title">Kitchen Items</div>
+                    <div class="option-description">Cutting boards, utensils, serving pieces</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <div></div>
+                <button class="btn btn-primary" id="next1" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 2: Budget -->
+        <div class="question-card" id="question2">
+            <h2 class="question-title">What's your budget per linear meter?</h2>
+            <p class="question-subtitle">This helps us recommend timbers within your price range:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="budget">
+                    <div class="option-title">Budget ($25-40/LM)</div>
+                    <div class="option-description">Cost-effective options for practice or painted projects</div>
+                </div>
+                <div class="option-btn" data-value="mid-range">
+                    <div class="option-title">Mid-range ($40-70/LM)</div>
+                    <div class="option-description">Good quality timbers for most furniture projects</div>
+                </div>
+                <div class="option-btn" data-value="premium">
+                    <div class="option-title">Premium ($70-100/LM)</div>
+                    <div class="option-description">High-quality woods for special projects</div>
+                </div>
+                <div class="option-btn" data-value="luxury">
+                    <div class="option-title">Luxury ($100+/LM)</div>
+                    <div class="option-description">Exotic and premium woods for heirloom pieces</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="back2">← Back</button>
+                <button class="btn btn-primary" id="next2" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 3: Color Preference -->
+        <div class="question-card" id="question3">
+            <h2 class="question-title">What wood color/tone do you prefer?</h2>
+            <p class="question-subtitle">Choose the color palette that matches your vision:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="light">
+                    <div class="option-title">Light Woods</div>
+                    <div class="option-description">Cream, blonde, pale tones (Oak, Maple, Beech)</div>
+                </div>
+                <div class="option-btn" data-value="medium">
+                    <div class="option-title">Medium Tones</div>
+                    <div class="option-description">Golden, honey, light brown (Rosewood, Silky Oak)</div>
+                </div>
+                <div class="option-btn" data-value="dark">
+                    <div class="option-title">Dark Woods</div>
+                    <div class="option-description">Chocolate, walnut, deep browns (Blackwood, Cherry)</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="back3">← Back</button>
+                <button class="btn btn-primary" id="next3" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 4: Grain Character -->
+        <div class="question-card" id="question4">
+            <h2 class="question-title">How important is grain character to your project?</h2>
+            <p class="question-subtitle">The grain pattern affects the final appearance:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="subtle">
+                    <div class="option-title">Subtle Grain</div>
+                    <div class="option-description">Clean, minimal patterns - great for painted pieces</div>
+                </div>
+                <div class="option-btn" data-value="moderate">
+                    <div class="option-title">Moderate Grain</div>
+                    <div class="option-description">Some character without being overpowering</div>
+                </div>
+                <div class="option-btn" data-value="dramatic">
+                    <div class="option-title">Dramatic Grain</div>
+                    <div class="option-description">Bold patterns and figured wood features</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="back4">← Back</button>
+                <button class="btn btn-primary" id="next4" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 5: Experience Level -->
+        <div class="question-card" id="question5">
+            <h2 class="question-title">What's your woodworking experience level?</h2>
+            <p class="question-subtitle">This helps us recommend timbers suited to your skill level:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="beginner">
+                    <div class="option-title">Beginner</div>
+                    <div class="option-description">Prefer easy-to-work, forgiving woods</div>
+                </div>
+                <div class="option-btn" data-value="intermediate">
+                    <div class="option-title">Intermediate</div>
+                    <div class="option-description">Can handle some challenging properties</div>
+                </div>
+                <div class="option-btn" data-value="advanced">
+                    <div class="option-title">Advanced</div>
+                    <div class="option-description">Comfortable working with difficult woods</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="back5">← Back</button>
+                <button class="btn btn-primary" id="next5" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Question 6: Finish Type -->
+        <div class="question-card" id="question6">
+            <h2 class="question-title">What finish are you planning?</h2>
+            <p class="question-subtitle">Your intended finish affects which timber works best:</p>
+            <div class="options-grid">
+                <div class="option-btn" data-value="natural">
+                    <div class="option-title">Natural/Clear Finish</div>
+                    <div class="option-description">Showcase the natural wood grain and color</div>
+                </div>
+                <div class="option-btn" data-value="stained">
+                    <div class="option-title">Stained Finish</div>
+                    <div class="option-description">Enhance or change the wood color</div>
+                </div>
+                <div class="option-btn" data-value="painted">
+                    <div class="option-title">Painted Finish</div>
+                    <div class="option-description">Wood grain visibility not important</div>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="back6">← Back</button>
+                <button class="btn btn-primary" id="calculate">Get My Recommendations!</button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <h3>Analyzing Your Preferences...</h3>
+            <p>Finding the perfect timber matches for your project</p>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-container" id="results">
+            <div class="results-header">
+                <h2 class="results-title">🎯 Your Perfect Timber Matches</h2>
+                <p>Based on your preferences, here are our top recommendations:</p>
+            </div>
+            <div id="recommendationsList"></div>
+            
+            <div class="contact-section">
+                <h3 class="contact-title">Ready to Start Your Project?</h3>
+                <p>Contact Trend Timbers to discuss your specific needs, check availability, and get accurate quotes for your recommended timber species.</p>
+                <div class="contact-buttons">
+                    <a href="https://trendtimbers.com.au/dressed-timber-price-list/" class="btn btn-primary" target="_blank">View Full Price List</a>
+                    <a href="tel:+61234567890" class="btn btn-secondary">Call Us Now</a>
+                    <button class="btn btn-secondary" id="restartQuiz">Take Quiz Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timber database with furniture-specific data
+        const timberDatabase = {
+            "tasmanian-oak": {
+                species: "Tasmanian Oak",
+                priceMin: 26.5,
+                priceMax: 75.5,
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["beginner", "intermediate"],
+                finishTypes: ["stained", "painted"],
+                features: ["Excellent for staining", "Even grain pattern", "Good dimensional stability"],
+                whyGood: "Perfect for painted or stained pieces with its clean, even grain pattern and excellent workability.",
+                density: 650,
+                hardness: 4.9
+            },
+            "american-oak": {
+                species: "American Oak",
+                priceMin: 25,
+                priceMax: 87,
+                color: "Light",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["beginner", "intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Traditional furniture wood", "Excellent steam bending", "Prominent grain pattern"],
+                whyGood: "The classic choice for traditional furniture with beautiful grain patterns and superior steam bending properties.",
+                density: 750,
+                hardness: 6.0
+            },
+            "tasmanian-blackwood": {
+                species: "Tasmanian Blackwood",
+                priceMin: 39,
+                priceMax: 162,
+                color: "Dark",
+                grainCharacter: "Dramatic",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "small-items", "turned-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Fiddleback figure available", "Lustrous finish", "Premium appearance"],
+                whyGood: "Premium Australian timber with stunning grain patterns, perfect for high-end pieces and heirloom furniture.",
+                density: 640,
+                hardness: 5.9
+            },
+            "american-black-walnut": {
+                species: "American Black Walnut",
+                priceMin: 62,
+                priceMax: 152,
+                color: "Dark",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Premium",
+                projectTypes: ["fine-furniture", "small-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Luxury timber", "Ages beautifully", "Excellent workability"],
+                whyGood: "The gold standard for luxury furniture and heirloom pieces with unmatched beauty and workability.",
+                density: 610,
+                hardness: 4.49
+            },
+            "canadian-rock-maple": {
+                species: "Canadian Rock Maple",
+                priceMin: 26,
+                priceMax: 94.5,
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["kitchen-items", "turned-items"],
+                experienceLevel: ["beginner", "intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Food safe", "Fine even texture", "Excellent for detailed work"],
+                whyGood: "Perfect for kitchen items and detailed work with superior workability and food-safe properties.",
+                density: 705,
+                hardness: 6.45
+            },
+            "american-black-cherry": {
+                species: "American Black Cherry",
+                priceMin: 26.5,
+                priceMax: 92,
+                color: "Dark",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Premium",
+                projectTypes: ["fine-furniture", "small-items", "carved-projects"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
+                whyGood: "Ages to a rich, deep color and offers exceptional carving properties for fine furniture pieces.",
+                density: 560,
+                hardness: 4.23
+            },
+            "european-beech": {
+                species: "European Beech",
+                priceMin: 33,
+                priceMax: 72,
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Good",
+                projectTypes: ["fine-furniture", "turned-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["stained", "painted"],
+                features: ["Superior steam bending", "Fine uniform texture", "Traditional chair making"],
+                whyGood: "Ideal for bent furniture and traditional chair making with superior steam bending properties.",
+                density: 710,
+                hardness: 6.46
+            },
+            "fijian-mahogany": {
+                species: "Fijian Mahogany",
+                priceMin: 25.5,
+                priceMax: 97.5,
+                color: "Dark",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["cabinets", "turned-items"],
+                experienceLevel: ["beginner", "intermediate"],
+                finishTypes: ["natural", "stained"],
+                features: ["Sustainable plantation grown", "Traditional mahogany look", "Excellent workability"],
+                whyGood: "Sustainable alternative to traditional mahogany with excellent workability and classic appearance.",
+                density: 570,
+                hardness: 3.6
+            },
+            "new-guinea-rosewood": {
+                species: "New Guinea Rosewood",
+                priceMin: 29,
+                priceMax: 71.5,
+                color: "Medium",
+                grainCharacter: "Dramatic",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "small-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Exotic appearance", "Natural oils", "Golden lustre"],
+                whyGood: "Exotic timber with natural oils and stunning golden appearance, perfect for standout pieces.",
+                density: 650,
+                hardness: 4.7
+            },
+            "qld-maple": {
+                species: "Queensland Maple",
+                priceMin: 110,
+                priceMax: 110,
+                color: "Medium",
+                grainCharacter: "Dramatic",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "small-items"],
+                experienceLevel: ["advanced"],
+                finishTypes: ["natural"],
+                features: ["Figured grain patterns", "Lustrous sheen", "Fiddleback available"],
+                whyGood: "Premium Australian timber with exceptional figured grain patterns for showcase pieces.",
+                density: 575,
+                hardness: 4.7
+            },
+            "silky-oak": {
+                species: "Silky Oak",
+                priceMin: 33.5,
+                priceMax: 94,
+                color: "Medium",
+                grainCharacter: "Dramatic",
+                workability: "Good",
+                finishQuality: "Good",
+                projectTypes: ["small-items"],
+                experienceLevel: ["intermediate"],
+                finishTypes: ["natural"],
+                features: ["Lacewood-like figure", "Distinctive appearance", "Easy to work"],
+                whyGood: "Unique lacewood-like appearance perfect for decorative items and picture frames.",
+                density: 550,
+                hardness: 3.7
+            },
+            "camphor-laurel": {
+                species: "Camphor Laurel",
+                priceMin: 31,
+                priceMax: 91,
+                color: "Light",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Good",
+                projectTypes: ["small-items", "carved-projects"],
+                experienceLevel: ["intermediate"],
+                finishTypes: ["natural"],
+                features: ["Natural pest resistance", "Anti-bacterial properties", "Unique appearance"],
+                whyGood: "Natural pest resistance makes it perfect for storage boxes and chests with unique character.",
+                density: 790,
+                hardness: 5.5
+            },
+            "kauri-pine": {
+                species: "Kauri Pine",
+                priceMin: 24.5,
+                priceMax: 62,
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Good",
+                projectTypes: ["small-items"],
+                experienceLevel: ["beginner"],
+                finishTypes: ["painted", "stained"],
+                features: ["Clear straight grain", "Easy to work", "Knot-free"],
+                whyGood: "Perfect for beginners with clear grain and excellent workability, ideal for painted projects.",
+                density: 540,
+                hardness: 3.23
+            }
+        };
+
+        // Quiz state
+        let currentQuestion = 1;
+        let answers = {};
+        const totalQuestions = 6;
+
+        // Initialize quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            updateProgress();
+        });
+
+        function setupEventListeners() {
+            // Option selection handlers
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionDiv = document.getElementById(`question${i}`);
+                const options = questionDiv.querySelectorAll('.option-btn');
+                const nextBtn = document.getElementById(`next${i}`) || document.getElementById('calculate');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', () => selectOption(i, option, nextBtn));
+                });
+
+                if (i > 1) {
+                    const backBtn = document.getElementById(`back${i}`);
+                    if (backBtn) {
+                        backBtn.addEventListener('click', () => goToPrevious(i));
+                    }
+                }
+            }
+
+            // Special handler for final question
+            const calculateBtn = document.getElementById('calculate');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', calculateResults);
+            }
+
+            // Restart quiz handler
+            const restartBtn = document.getElementById('restartQuiz');
+            if (restartBtn) {
+                restartBtn.addEventListener('click', restartQuiz);
+            }
+        }
+
+        function selectOption(questionNum, selectedOption, nextBtn) {
+            const questionDiv = document.getElementById(`question${questionNum}`);
+            const options = questionDiv.querySelectorAll('.option-btn');
+            
+            // Remove selection from all options
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            selectedOption.classList.add('selected');
+            
+            // Store answer
+            const questionKey = getQuestionKey(questionNum);
+            answers[questionKey] = selectedOption.dataset.value;
+            
+            // Enable next button
+            nextBtn.disabled = false;
+            
+            // Auto-advance after short delay (except on last question)
+            if (questionNum < totalQuestions) {
+                setTimeout(() => {
+                    goToNext(questionNum);
+                }, 300);
+            }
+        }
+
+        function getQuestionKey(questionNum) {
+            const keys = ['project', 'budget', 'color', 'grain', 'experience', 'finish'];
+            return keys[questionNum - 1];
+        }
+
+        function goToNext(currentNum) {
+            const currentCard = document.getElementById(`question${currentNum}`);
+            const nextCard = document.getElementById(`question${currentNum + 1}`);
+            
+            currentCard.classList.remove('active');
+            nextCard.classList.add('active');
+            
+            currentQuestion = currentNum + 1;
+            updateProgress();
+        }
+
+        function goToPrevious(currentNum) {
+            const currentCard = document.getElementById(`question${currentNum}`);
+            const previousCard = document.getElementById(`question${currentNum - 1}`);
+            
+            currentCard.classList.remove('active');
+            previousCard.classList.add('active');
+            
+            currentQuestion = currentNum - 1;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                currentQuestion <= totalQuestions ? 
+                `Question ${currentQuestion} of ${totalQuestions}` : 
+                'Complete!';
+        }
+
+        function calculateResults() {
+            // Show loading screen
+            document.getElementById('question6').classList.remove('active');
+            document.getElementById('loading').classList.add('active');
+            
+            // Simulate processing time
+            setTimeout(() => {
+                const recommendations = getRecommendations();
+                displayResults(recommendations);
+                
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('results').classList.add('active');
+                updateProgress();
+            }, 2000);
+        }
+
+        function getRecommendations() {
+            const scores = {};
+            
+            // Calculate compatibility scores for each timber
+            Object.entries(timberDatabase).forEach(([key, timber]) => {
+                let score = 0;
+                let maxScore = 0;
+                
+                // Project type match (40 points)
+                maxScore += 40;
+                if (timber.projectTypes.includes(answers.project)) {
+                    score += 40;
+                } else if (
+                    (answers.project === 'fine-furniture' && timber.projectTypes.includes('cabinets')) ||
+                    (answers.project === 'cabinets' && timber.projectTypes.includes('fine-furniture'))
+                ) {
+                    score += 20; // Partial match
+                }
+                
+                // Budget compatibility (25 points)
+                maxScore += 25;
+                const budgetRanges = {
+                    'budget': [25, 40],
+                    'mid-range': [40, 70],
+                    'premium': [70, 100],
+                    'luxury': [100, 200]
+                };
+                const [minBudget, maxBudget] = budgetRanges[answers.budget];
+                if (timber.priceMin <= maxBudget && timber.priceMax >= minBudget) {
+                    const overlap = Math.min(maxBudget, timber.priceMax) - Math.max(minBudget, timber.priceMin);
+                    const budgetRange = maxBudget - minBudget;
+                    score += (overlap / budgetRange) * 25;
+                }
+                
+                // Color preference (15 points)
+                maxScore += 15;
+                if (timber.color.toLowerCase() === answers.color) {
+                    score += 15;
+                }
+                
+                // Grain character (10 points)
+                maxScore += 10;
+                if (timber.grainCharacter.toLowerCase() === answers.grain) {
+                    score += 10;
+                }
+                
+                // Experience level (5 points)
+                maxScore += 5;
+                if (timber.experienceLevel.includes(answers.experience)) {
+                    score += 5;
+                }
+                
+                // Finish compatibility (5 points)
+                maxScore += 5;
+                if (timber.finishTypes.includes(answers.finish)) {
+                    score += 5;
+                }
+                
+                scores[key] = {
+                    timber: timber,
+                    score: score,
+                    percentage: (score / maxScore) * 100
+                };
+            });
+            
+            // Sort by score and return top 3
+            return Object.entries(scores)
+                .sort(([,a], [,b]) => b.score - a.score)
+                .slice(0, 3)
+                .map(([key, data]) => data);
+        }
+
+        function displayResults(recommendations) {
+            const container = document.getElementById('recommendationsList');
+            container.innerHTML = '';
+            
+            recommendations.forEach((rec, index) => {
+                const timber = rec.timber;
+                const card = document.createElement('div');
+                card.className = 'recommendation-card';
+                
+                card.innerHTML = `
+                    <div class="recommendation-rank">${index + 1}</div>
+                    <h3 class="timber-name">${timber.species}</h3>
+                    <div class="price-range">$${timber.priceMin.toFixed(2)} - $${timber.priceMax.toFixed(2)} per linear meter</div>
+                    
+                    <div class="timber-properties">
+                        <div class="property">
+                            <div class="property-label">Workability</div>
+                            <div class="property-value">${timber.workability}</div>
+                        </div>
+                        <div class="property">
+                            <div class="property-label">Finish Quality</div>
+                            <div class="property-value">${timber.finishQuality}</div>
+                        </div>
+                        <div class="property">
+                            <div class="property-label">Grain Character</div>
+                            <div class="property-value">${timber.grainCharacter}</div>
+                        </div>
+                        <div class="property">
+                            <div class="property-label">Match Score</div>
+                            <div class="property-value">${rec.percentage.toFixed(0)}%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="why-perfect">
+                        <strong>Why this is perfect for you:</strong><br>
+                        ${timber.whyGood}
+                    </div>
+                    
+                    <div class="features-list">
+                        ${timber.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function restartQuiz() {
+            // Reset state
+            currentQuestion = 1;
+            answers = {};
+            
+            // Hide results
+            document.getElementById('results').classList.remove('active');
+            
+            // Show first question
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById('question1').classList.add('active');
+            
+            // Reset all selections
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Reset all next buttons
+            for (let i = 1; i <= totalQuestions; i++) {
+                const nextBtn = document.getElementById(`next${i}`) || document.getElementById('calculate');
+                if (nextBtn) {
+                    nextBtn.disabled = true;
+                }
+            }
+            
+            // Update progress
+            updateProgress();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
