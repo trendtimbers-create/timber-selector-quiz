@@ -252,6 +252,39 @@
             border-left: 5px solid var(--primary-color);
         }
 
+        .recommendation-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timber-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .timber-image-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .timber-info {
+            flex: 1;
+        }
+
         .recommendation-rank {
             background: var(--primary-color);
             color: white;
@@ -262,7 +295,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .timber-name {
@@ -272,16 +305,17 @@
             margin-bottom: 0.5rem;
         }
 
-        .price-range {
-            font-size: 1.1rem;
-            color: var(--secondary-color);
+        .timber-category {
+            font-size: 1rem;
+            color: var(--accent-color);
             font-weight: bold;
             margin-bottom: 1rem;
+            text-transform: capitalize;
         }
 
         .timber-properties {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
             margin-bottom: 1rem;
         }
@@ -395,6 +429,18 @@
             .btn {
                 width: 100%;
                 max-width: 250px;
+            }
+
+            .recommendation-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timber-image,
+            .timber-image-placeholder {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto;
             }
         }
 
@@ -596,7 +642,7 @@
             
             <div class="contact-section">
                 <h3 class="contact-title">Ready to Start Your Project?</h3>
-                <p>Contact Trend Timbers to discuss your specific needs, check availability, and get accurate quotes for your recommended timber species.</p>
+                <p>Contact Trend Timbers to discuss your specific needs, check availability, and get current pricing for your recommended timber species.</p>
                 <div class="contact-buttons">
                     <a href="https://trendtimbers.com.au/dressed-timber-price-list/" class="btn btn-primary" target="_blank">View Full Price List</a>
                     <a href="tel:+6145775244" class="btn btn-secondary">Call Us Now</a>
@@ -607,12 +653,11 @@
     </div>
 
     <script>
-        // Timber database with furniture-specific data
+        // Complete timber database with all species from original data
         const timberDatabase = {
             "tasmanian-oak": {
                 species: "Tasmanian Oak",
-                priceMin: 26.5,
-                priceMax: 75.5,
+                image: "images/tasmanian-oak.jpg",
                 color: "Light",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
@@ -626,10 +671,25 @@
                 hardness: 4.9,
                 budgetCategory: "budget"
             },
+            "jarrah": {
+                species: "Jarrah",
+                image: "images/jarrah.jpg",
+                color: "Dark",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Termite resistant", "Fire resistant", "Very durable"],
+                whyGood: "Exceptional durability and natural resistance make it perfect for high-quality furniture that will last generations.",
+                density: 835,
+                hardness: 8.5,
+                budgetCategory: "value"
+            },
             "american-oak": {
                 species: "American Oak",
-                priceMin: 25,
-                priceMax: 87,
+                image: "images/american-oak.jpg",
                 color: "Light",
                 grainCharacter: "Moderate",
                 workability: "Excellent",
@@ -645,8 +705,7 @@
             },
             "tasmanian-blackwood": {
                 species: "Tasmanian Blackwood",
-                priceMin: 39,
-                priceMax: 162,
+                image: "images/tasmanian-blackwood.jpg",
                 color: "Dark",
                 grainCharacter: "Dramatic",
                 workability: "Good",
@@ -660,95 +719,9 @@
                 hardness: 5.9,
                 budgetCategory: "premium"
             },
-            "american-black-walnut": {
-                species: "American Black Walnut",
-                priceMin: 62,
-                priceMax: 152,
-                color: "Dark",
-                grainCharacter: "Moderate",
-                workability: "Excellent",
-                finishQuality: "Premium",
-                projectTypes: ["fine-furniture", "small-items"],
-                experienceLevel: ["intermediate", "advanced"],
-                finishTypes: ["natural"],
-                features: ["Luxury timber", "Ages beautifully", "Excellent workability"],
-                whyGood: "The gold standard for luxury furniture and heirloom pieces with unmatched beauty and workability.",
-                density: 610,
-                hardness: 4.49,
-                budgetCategory: "luxury"
-            },
-            "canadian-rock-maple": {
-                species: "Canadian Rock Maple",
-                priceMin: 26,
-                priceMax: 94.5,
-                color: "Light",
-                grainCharacter: "Subtle",
-                workability: "Excellent",
-                finishQuality: "Very Good",
-                projectTypes: ["kitchen-items", "turned-items"],
-                experienceLevel: ["beginner", "intermediate", "advanced"],
-                finishTypes: ["natural", "stained"],
-                features: ["Food safe", "Fine even texture", "Excellent for detailed work"],
-                whyGood: "Perfect for kitchen items and detailed work with superior workability and food-safe properties.",
-                density: 705,
-                hardness: 6.45,
-                budgetCategory: "value"
-            },
-            "american-black-cherry": {
-                species: "American Black Cherry",
-                priceMin: 26.5,
-                priceMax: 92,
-                color: "Dark",
-                grainCharacter: "Subtle",
-                workability: "Excellent",
-                finishQuality: "Premium",
-                projectTypes: ["fine-furniture", "small-items", "carved-projects"],
-                experienceLevel: ["intermediate", "advanced"],
-                finishTypes: ["natural"],
-                features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
-                whyGood: "Ages to a rich, deep color and offers exceptional carving properties for fine furniture pieces.",
-                density: 560,
-                hardness: 4.23,
-                budgetCategory: "premium"
-            },
-            "european-beech": {
-                species: "European Beech",
-                priceMin: 33,
-                priceMax: 72,
-                color: "Light",
-                grainCharacter: "Subtle",
-                workability: "Excellent",
-                finishQuality: "Good",
-                projectTypes: ["fine-furniture", "turned-items"],
-                experienceLevel: ["intermediate", "advanced"],
-                finishTypes: ["stained", "painted"],
-                features: ["Superior steam bending", "Fine uniform texture", "Traditional chair making"],
-                whyGood: "Ideal for bent furniture and traditional chair making with superior steam bending properties.",
-                density: 710,
-                hardness: 6.46,
-                budgetCategory: "value"
-            },
-            "fijian-mahogany": {
-                species: "Fijian Mahogany",
-                priceMin: 25.5,
-                priceMax: 97.5,
-                color: "Dark",
-                grainCharacter: "Moderate",
-                workability: "Excellent",
-                finishQuality: "Very Good",
-                projectTypes: ["cabinets", "turned-items"],
-                experienceLevel: ["beginner", "intermediate"],
-                finishTypes: ["natural", "stained"],
-                features: ["Sustainable plantation grown", "Traditional mahogany look", "Excellent workability"],
-                whyGood: "Sustainable alternative to traditional mahogany with excellent workability and classic appearance.",
-                density: 570,
-                hardness: 3.6,
-                budgetCategory: "value"
-            },
             "new-guinea-rosewood": {
                 species: "New Guinea Rosewood",
-                priceMin: 29,
-                priceMax: 71.5,
+                image: "images/new-guinea-rosewood.jpg",
                 color: "Medium",
                 grainCharacter: "Dramatic",
                 workability: "Good",
@@ -762,10 +735,169 @@
                 hardness: 4.7,
                 budgetCategory: "premium"
             },
+            "nsw-spotted-gum": {
+                species: "NSW Spotted Gum",
+                image: "images/nsw-spotted-gum.jpg",
+                color: "Medium",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Excellent termite resistance", "Fire resistant", "High strength"],
+                whyGood: "Exceptional durability and strength make it ideal for heavy-duty furniture and high-traffic pieces.",
+                density: 950,
+                hardness: 11.0,
+                budgetCategory: "value"
+            },
+            "sydney-blue-gum": {
+                species: "Sydney Blue Gum",
+                image: "images/sydney-blue-gum.jpg",
+                color: "Medium",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Very Good",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["intermediate"],
+                finishTypes: ["natural", "stained"],
+                features: ["Easy to work", "Versatile", "Good strength"],
+                whyGood: "Versatile Australian hardwood that offers good workability and attractive grain for various furniture projects.",
+                density: 840,
+                hardness: 8.1,
+                budgetCategory: "value"
+            },
+            "nsw-blackbutt": {
+                species: "NSW Blackbutt",
+                image: "images/nsw-blackbutt.jpg",
+                color: "Light",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "cabinets"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Termite resistant", "Fire resistant", "Fast growth"],
+                whyGood: "Sustainable and durable Australian hardwood with excellent resistance properties and attractive appearance.",
+                density: 930,
+                hardness: 8.9,
+                budgetCategory: "value"
+            },
+            "canadian-rock-maple": {
+                species: "Canadian Rock Maple",
+                image: "images/canadian-rock-maple.jpg",
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["kitchen-items", "turned-items"],
+                experienceLevel: ["beginner", "intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Food safe", "Fine even texture", "Excellent for detailed work"],
+                whyGood: "Perfect for kitchen items and detailed work with superior workability and food-safe properties.",
+                density: 705,
+                hardness: 6.45,
+                budgetCategory: "value"
+            },
+            "fijian-mahogany": {
+                species: "Fijian Mahogany",
+                image: "images/fijian-mahogany.jpg",
+                color: "Dark",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["cabinets", "turned-items"],
+                experienceLevel: ["beginner", "intermediate"],
+                finishTypes: ["natural", "stained"],
+                features: ["Sustainable plantation grown", "Traditional mahogany look", "Excellent workability"],
+                whyGood: "Sustainable alternative to traditional mahogany with excellent workability and classic appearance.",
+                density: 570,
+                hardness: 3.6,
+                budgetCategory: "value"
+            },
+            "european-beech": {
+                species: "European Beech",
+                image: "images/european-beech.jpg",
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Good",
+                projectTypes: ["fine-furniture", "turned-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["stained", "painted"],
+                features: ["Superior steam bending", "Fine uniform texture", "Traditional chair making"],
+                whyGood: "Ideal for bent furniture and traditional chair making with superior steam bending properties.",
+                density: 710,
+                hardness: 6.46,
+                budgetCategory: "value"
+            },
+            "american-black-walnut": {
+                species: "American Black Walnut",
+                image: "images/american-black-walnut.jpg",
+                color: "Dark",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Premium",
+                projectTypes: ["fine-furniture", "small-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Luxury timber", "Ages beautifully", "Excellent workability"],
+                whyGood: "The gold standard for luxury furniture and heirloom pieces with unmatched beauty and workability.",
+                density: 610,
+                hardness: 4.49,
+                budgetCategory: "luxury"
+            },
+            "ironbark": {
+                species: "Ironbark",
+                image: "images/ironbark.jpg",
+                color: "Dark",
+                grainCharacter: "Subtle",
+                workability: "Difficult",
+                finishQuality: "Good",
+                projectTypes: ["fine-furniture"],
+                experienceLevel: ["advanced"],
+                finishTypes: ["natural"],
+                features: ["Extremely hard", "Exceptional durability", "High strength"],
+                whyGood: "Exceptionally hard and durable timber for demanding applications requiring maximum strength and longevity.",
+                density: 1106,
+                hardness: 16.0,
+                budgetCategory: "value"
+            },
+            "camphor-laurel": {
+                species: "Camphor Laurel",
+                image: "images/camphor-laurel.jpg",
+                color: "Light",
+                grainCharacter: "Moderate",
+                workability: "Good",
+                finishQuality: "Good",
+                projectTypes: ["small-items", "carved-projects"],
+                experienceLevel: ["intermediate"],
+                finishTypes: ["natural"],
+                features: ["Natural pest resistance", "Anti-bacterial properties", "Unique appearance"],
+                whyGood: "Natural pest resistance makes it perfect for storage boxes and chests with unique character.",
+                density: 790,
+                hardness: 5.5,
+                budgetCategory: "value"
+            },
+            "american-black-cherry": {
+                species: "American Black Cherry",
+                image: "images/american-black-cherry.jpg",
+                color: "Dark",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Premium",
+                projectTypes: ["fine-furniture", "small-items", "carved-projects"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural"],
+                features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
+                whyGood: "Ages to a rich, deep color and offers exceptional carving properties for fine furniture pieces.",
+                density: 560,
+                hardness: 4.23,
+                budgetCategory: "premium"
+            },
             "qld-maple": {
                 species: "Queensland Maple",
-                priceMin: 110,
-                priceMax: 110,
+                image: "images/qld-maple.jpg",
                 color: "Medium",
                 grainCharacter: "Dramatic",
                 workability: "Good",
@@ -781,8 +913,7 @@
             },
             "silky-oak": {
                 species: "Silky Oak",
-                priceMin: 33.5,
-                priceMax: 94,
+                image: "images/silky-oak.jpg",
                 color: "Medium",
                 grainCharacter: "Dramatic",
                 workability: "Good",
@@ -796,27 +927,9 @@
                 hardness: 3.7,
                 budgetCategory: "value"
             },
-            "camphor-laurel": {
-                species: "Camphor Laurel",
-                priceMin: 31,
-                priceMax: 91,
-                color: "Light",
-                grainCharacter: "Moderate",
-                workability: "Good",
-                finishQuality: "Good",
-                projectTypes: ["small-items", "carved-projects"],
-                experienceLevel: ["intermediate"],
-                finishTypes: ["natural"],
-                features: ["Natural pest resistance", "Anti-bacterial properties", "Unique appearance"],
-                whyGood: "Natural pest resistance makes it perfect for storage boxes and chests with unique character.",
-                density: 790,
-                hardness: 5.5,
-                budgetCategory: "value"
-            },
             "kauri-pine": {
                 species: "Kauri Pine",
-                priceMin: 24.5,
-                priceMax: 62,
+                image: "images/kauri-pine.jpg",
                 color: "Light",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
@@ -828,6 +941,22 @@
                 whyGood: "Perfect for beginners with clear grain and excellent workability, ideal for painted projects.",
                 density: 540,
                 hardness: 3.23,
+                budgetCategory: "budget"
+            },
+            "radiata-pine": {
+                species: "Radiata Pine",
+                image: "images/radiata-pine.jpg",
+                color: "Light",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Good",
+                projectTypes: ["cabinets", "small-items"],
+                experienceLevel: ["beginner"],
+                finishTypes: ["painted", "stained"],
+                features: ["Budget friendly", "Easy to work", "Widely available"],
+                whyGood: "Most affordable option that's perfect for beginners, painted projects, or practice pieces.",
+                density: 550,
+                hardness: 2.5,
                 budgetCategory: "budget"
             }
         };
@@ -1035,10 +1164,26 @@
                 const card = document.createElement('div');
                 card.className = 'recommendation-card';
                 
+                // Determine category display name
+                const categoryNames = {
+                    'budget': 'Affordable Choice',
+                    'value': 'Great Value',
+                    'premium': 'Premium Quality',
+                    'luxury': 'Luxury Timber'
+                };
+                
                 card.innerHTML = `
-                    <div class="recommendation-rank">${index + 1}</div>
-                    <h3 class="timber-name">${timber.species}</h3>
-                    <div class="price-range">$${timber.priceMin.toFixed(2)} - $${timber.priceMax.toFixed(2)} per linear meter</div>
+                    <div class="recommendation-header">
+                        ${timber.image ? 
+                            `<img src="${timber.image}" alt="${timber.species}" class="timber-image" onerror="this.outerHTML='<div class=timber-image-placeholder>🪵</div>'">` :
+                            `<div class="timber-image-placeholder">🪵</div>`
+                        }
+                        <div class="timber-info">
+                            <div class="recommendation-rank">${index + 1}</div>
+                            <h3 class="timber-name">${timber.species}</h3>
+                            <div class="timber-category">${categoryNames[timber.budgetCategory] || timber.budgetCategory}</div>
+                        </div>
+                    </div>
                     
                     <div class="timber-properties">
                         <div class="property">
