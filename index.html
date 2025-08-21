@@ -30,54 +30,54 @@
             font-family: 'Georgia', 'Times New Roman', serif;
             background-color: var(--background);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
         }
 
         .quiz-header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
             background: var(--surface);
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .quiz-header h1 {
             color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             font-weight: bold;
         }
 
         .quiz-header p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .progress-container {
             background: var(--surface);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .progress-bar {
             width: 100%;
-            height: 10px;
+            height: 6px;
             background: var(--border);
-            border-radius: 5px;
+            border-radius: 3px;
             overflow: hidden;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .progress-fill {
@@ -91,95 +91,97 @@
             text-align: center;
             font-weight: bold;
             color: var(--primary-color);
+            font-size: 0.85rem;
         }
 
         .question-card {
             background: var(--surface);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             display: none;
         }
 
         .question-card.active {
             display: block;
-            animation: slideIn 0.5s ease;
+            animation: slideIn 0.3s ease;
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
+            from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
         .question-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.8rem;
             font-weight: bold;
         }
 
         .question-subtitle {
             color: var(--text-light);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
         }
 
         .options-grid {
             display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
         }
 
         .option-btn {
             background: var(--surface);
             border: 2px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 1rem;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
         }
 
         .option-btn:hover {
             border-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .option-btn.selected {
             border-color: var(--primary-color);
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
         }
 
         .option-title {
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
         }
 
         .option-description {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.8rem;
+            opacity: 0.9;
         }
 
         .navigation {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2rem;
+            margin-top: 1.2rem;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: bold;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -193,8 +195,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
         }
 
         .btn-secondary {
@@ -220,7 +222,7 @@
 
         .results-container.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -230,54 +232,54 @@
 
         .results-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             background: var(--surface);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .results-title {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .recommendation-card {
             background: var(--surface);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
         }
 
         .recommendation-header {
             display: flex;
             align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .timber-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
             object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
             flex-shrink: 0;
         }
 
         .timber-image-placeholder {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
         }
 
@@ -288,104 +290,107 @@
         .recommendation-rank {
             background: var(--primary-color);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.8rem;
         }
 
         .timber-name {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .timber-category {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: var(--accent-color);
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             text-transform: capitalize;
         }
 
         .timber-properties {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .property {
             background: var(--background);
-            padding: 0.8rem;
-            border-radius: 8px;
+            padding: 0.5rem;
+            border-radius: 6px;
             text-align: center;
         }
 
         .property-label {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             color: var(--text-light);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .property-value {
             font-weight: bold;
             color: var(--primary-color);
+            font-size: 0.8rem;
         }
 
         .why-perfect {
             background: rgba(34, 139, 34, 0.1);
-            border-left: 4px solid var(--success);
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
+            border-left: 3px solid var(--success);
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .features-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .feature-tag {
             background: var(--secondary-color);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
         }
 
         .contact-section {
             background: var(--surface);
-            border-radius: 15px;
-            padding: 2rem;
+            border-radius: 12px;
+            padding: 1.5rem;
             text-align: center;
-            margin-top: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .contact-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .contact-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .loading {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             display: none;
         }
 
@@ -394,13 +399,13 @@
         }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--border);
-            border-top: 5px solid var(--primary-color);
+            width: 35px;
+            height: 35px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            margin: 0 auto 0.8rem;
         }
 
         @keyframes spin {
@@ -413,12 +418,29 @@
                 padding: 10px;
             }
 
+            .quiz-header {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
             .quiz-header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .quiz-header p {
+                font-size: 0.85rem;
+            }
+
+            .question-card {
+                padding: 1rem;
             }
 
             .question-title {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .option-btn {
+                padding: 0.8rem;
             }
 
             .contact-buttons {
@@ -428,19 +450,88 @@
 
             .btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 200px;
+                padding: 0.7rem;
+                font-size: 0.85rem;
             }
 
             .recommendation-header {
                 flex-direction: column;
                 text-align: center;
+                align-items: center;
+                gap: 0.8rem;
             }
 
             .timber-image,
             .timber-image-placeholder {
-                width: 100px;
-                height: 100px;
-                margin: 0 auto;
+                width: 60px;
+                height: 60px;
+            }
+
+            .timber-properties {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+
+            .progress-container {
+                padding: 0.6rem;
+            }
+
+            .recommendation-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .quiz-header {
+                padding: 0.8rem;
+            }
+
+            .quiz-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .question-card {
+                padding: 0.8rem;
+            }
+
+            .recommendation-card {
+                padding: 0.8rem;
+            }
+
+            .timber-properties {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.3rem;
+            }
+
+            .property {
+                padding: 0.4rem 0.2rem;
+            }
+
+            .property-label {
+                font-size: 0.65rem;
+            }
+
+            .property-value {
+                font-size: 0.75rem;
+            }
+
+            .features-list {
+                gap: 0.2rem;
+            }
+
+            .feature-tag {
+                padding: 0.15rem 0.4rem;
+                font-size: 0.6rem;
+            }
+
+            .why-perfect {
+                padding: 0.6rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -453,8 +544,8 @@
     <div class="container">
         <!-- Quiz Header -->
         <div class="quiz-header">
-            <h1>🪵 Find Your Perfect Timber for Furniture Making</h1>
-            <p>Discover the ideal wood species for your furniture project through our specialized quiz. Get personalized recommendations based on your project type, budget, and woodworking preferences.</p>
+            <h1>🪵 Find Your Perfect Timber</h1>
+            <p>Get timber recommendations for your furniture project in 6 quick questions.</p>
         </div>
 
         <!-- Progress Bar -->
@@ -1175,7 +1266,7 @@
                 card.innerHTML = `
                     <div class="recommendation-header">
                         ${timber.image ? 
-                            `<img src="${timber.image}" alt="${timber.species}" class="timber-image" onerror="this.outerHTML='<div class=timber-image-placeholder>🪵</div>'">` :
+                            `<img src="${timber.image}" alt="${timber.species}" class="timber-image" onerror="this.outerHTML='<div class=timer-image-placeholder>🪵</div>'">` :
                             `<div class="timber-image-placeholder">🪵</div>`
                         }
                         <div class="timber-info">
