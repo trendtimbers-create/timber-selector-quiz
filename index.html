@@ -455,26 +455,26 @@
             </div>
         </div>
 
-        <!-- Question 2: Budget -->
+        <!-- Question 2: Budget Priority -->
         <div class="question-card" id="question2">
-            <h2 class="question-title">What's your budget per linear meter?</h2>
-            <p class="question-subtitle">This helps us recommend timbers within your price range:</p>
+            <h2 class="question-title">How important is the budget to you?</h2>
+            <p class="question-subtitle">This helps us balance cost vs. quality in our recommendations:</p>
             <div class="options-grid">
-                <div class="option-btn" data-value="budget">
-                    <div class="option-title">Budget ($25-40/LM)</div>
-                    <div class="option-description">Cost-effective options for practice or painted projects</div>
+                <div class="option-btn" data-value="tight-budget">
+                    <div class="option-title">I'm on a tight budget</div>
+                    <div class="option-description">Cost is my main concern - I need affordable options</div>
                 </div>
-                <div class="option-btn" data-value="mid-range">
-                    <div class="option-title">Mid-range ($40-70/LM)</div>
-                    <div class="option-description">Good quality timbers for most furniture projects</div>
+                <div class="option-btn" data-value="value-focused">
+                    <div class="option-title">I want good value for money</div>
+                    <div class="option-description">Balance of quality and reasonable pricing is important</div>
                 </div>
-                <div class="option-btn" data-value="premium">
-                    <div class="option-title">Premium ($70-100/LM)</div>
-                    <div class="option-description">High-quality woods for special projects</div>
+                <div class="option-btn" data-value="quality-focused">
+                    <div class="option-title">Quality is more important than price</div>
+                    <div class="option-description">I'm willing to pay more for the right timber</div>
                 </div>
-                <div class="option-btn" data-value="luxury">
-                    <div class="option-title">Luxury ($100+/LM)</div>
-                    <div class="option-description">Exotic and premium woods for heirloom pieces</div>
+                <div class="option-btn" data-value="perfect-wood">
+                    <div class="option-title">I'm after the perfect wood for my application</div>
+                    <div class="option-description">Price is not the deciding factor - I want the best match</div>
                 </div>
             </div>
             <div class="navigation">
@@ -599,7 +599,7 @@
                 <p>Contact Trend Timbers to discuss your specific needs, check availability, and get accurate quotes for your recommended timber species.</p>
                 <div class="contact-buttons">
                     <a href="https://trendtimbers.com.au/dressed-timber-price-list/" class="btn btn-primary" target="_blank">View Full Price List</a>
-                    <a href="tel:+61234567890" class="btn btn-secondary">Call Us Now</a>
+                    <a href="tel:+6145775244" class="btn btn-secondary">Call Us Now</a>
                     <button class="btn btn-secondary" id="restartQuiz">Take Quiz Again</button>
                 </div>
             </div>
@@ -623,7 +623,8 @@
                 features: ["Excellent for staining", "Even grain pattern", "Good dimensional stability"],
                 whyGood: "Perfect for painted or stained pieces with its clean, even grain pattern and excellent workability.",
                 density: 650,
-                hardness: 4.9
+                hardness: 4.9,
+                budgetCategory: "budget"
             },
             "american-oak": {
                 species: "American Oak",
@@ -639,7 +640,8 @@
                 features: ["Traditional furniture wood", "Excellent steam bending", "Prominent grain pattern"],
                 whyGood: "The classic choice for traditional furniture with beautiful grain patterns and superior steam bending properties.",
                 density: 750,
-                hardness: 6.0
+                hardness: 6.0,
+                budgetCategory: "value"
             },
             "tasmanian-blackwood": {
                 species: "Tasmanian Blackwood",
@@ -655,7 +657,8 @@
                 features: ["Fiddleback figure available", "Lustrous finish", "Premium appearance"],
                 whyGood: "Premium Australian timber with stunning grain patterns, perfect for high-end pieces and heirloom furniture.",
                 density: 640,
-                hardness: 5.9
+                hardness: 5.9,
+                budgetCategory: "premium"
             },
             "american-black-walnut": {
                 species: "American Black Walnut",
@@ -671,7 +674,8 @@
                 features: ["Luxury timber", "Ages beautifully", "Excellent workability"],
                 whyGood: "The gold standard for luxury furniture and heirloom pieces with unmatched beauty and workability.",
                 density: 610,
-                hardness: 4.49
+                hardness: 4.49,
+                budgetCategory: "luxury"
             },
             "canadian-rock-maple": {
                 species: "Canadian Rock Maple",
@@ -687,7 +691,8 @@
                 features: ["Food safe", "Fine even texture", "Excellent for detailed work"],
                 whyGood: "Perfect for kitchen items and detailed work with superior workability and food-safe properties.",
                 density: 705,
-                hardness: 6.45
+                hardness: 6.45,
+                budgetCategory: "value"
             },
             "american-black-cherry": {
                 species: "American Black Cherry",
@@ -703,7 +708,8 @@
                 features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
                 whyGood: "Ages to a rich, deep color and offers exceptional carving properties for fine furniture pieces.",
                 density: 560,
-                hardness: 4.23
+                hardness: 4.23,
+                budgetCategory: "premium"
             },
             "european-beech": {
                 species: "European Beech",
@@ -719,7 +725,8 @@
                 features: ["Superior steam bending", "Fine uniform texture", "Traditional chair making"],
                 whyGood: "Ideal for bent furniture and traditional chair making with superior steam bending properties.",
                 density: 710,
-                hardness: 6.46
+                hardness: 6.46,
+                budgetCategory: "value"
             },
             "fijian-mahogany": {
                 species: "Fijian Mahogany",
@@ -735,7 +742,8 @@
                 features: ["Sustainable plantation grown", "Traditional mahogany look", "Excellent workability"],
                 whyGood: "Sustainable alternative to traditional mahogany with excellent workability and classic appearance.",
                 density: 570,
-                hardness: 3.6
+                hardness: 3.6,
+                budgetCategory: "value"
             },
             "new-guinea-rosewood": {
                 species: "New Guinea Rosewood",
@@ -751,7 +759,8 @@
                 features: ["Exotic appearance", "Natural oils", "Golden lustre"],
                 whyGood: "Exotic timber with natural oils and stunning golden appearance, perfect for standout pieces.",
                 density: 650,
-                hardness: 4.7
+                hardness: 4.7,
+                budgetCategory: "premium"
             },
             "qld-maple": {
                 species: "Queensland Maple",
@@ -767,7 +776,8 @@
                 features: ["Figured grain patterns", "Lustrous sheen", "Fiddleback available"],
                 whyGood: "Premium Australian timber with exceptional figured grain patterns for showcase pieces.",
                 density: 575,
-                hardness: 4.7
+                hardness: 4.7,
+                budgetCategory: "luxury"
             },
             "silky-oak": {
                 species: "Silky Oak",
@@ -783,7 +793,8 @@
                 features: ["Lacewood-like figure", "Distinctive appearance", "Easy to work"],
                 whyGood: "Unique lacewood-like appearance perfect for decorative items and picture frames.",
                 density: 550,
-                hardness: 3.7
+                hardness: 3.7,
+                budgetCategory: "value"
             },
             "camphor-laurel": {
                 species: "Camphor Laurel",
@@ -799,7 +810,8 @@
                 features: ["Natural pest resistance", "Anti-bacterial properties", "Unique appearance"],
                 whyGood: "Natural pest resistance makes it perfect for storage boxes and chests with unique character.",
                 density: 790,
-                hardness: 5.5
+                hardness: 5.5,
+                budgetCategory: "value"
             },
             "kauri-pine": {
                 species: "Kauri Pine",
@@ -815,7 +827,8 @@
                 features: ["Clear straight grain", "Easy to work", "Knot-free"],
                 whyGood: "Perfect for beginners with clear grain and excellent workability, ideal for painted projects.",
                 density: 540,
-                hardness: 3.23
+                hardness: 3.23,
+                budgetCategory: "budget"
             }
         };
 
@@ -958,19 +971,21 @@
                     score += 20; // Partial match
                 }
                 
-                // Budget compatibility (25 points)
+                // Budget priority compatibility (25 points)
                 maxScore += 25;
-                const budgetRanges = {
-                    'budget': [25, 40],
-                    'mid-range': [40, 70],
-                    'premium': [70, 100],
-                    'luxury': [100, 200]
+                const budgetPriorityMap = {
+                    'tight-budget': ['budget'],
+                    'value-focused': ['budget', 'value'],
+                    'quality-focused': ['value', 'premium'],
+                    'perfect-wood': ['premium', 'luxury']
                 };
-                const [minBudget, maxBudget] = budgetRanges[answers.budget];
-                if (timber.priceMin <= maxBudget && timber.priceMax >= minBudget) {
-                    const overlap = Math.min(maxBudget, timber.priceMax) - Math.max(minBudget, timber.priceMin);
-                    const budgetRange = maxBudget - minBudget;
-                    score += (overlap / budgetRange) * 25;
+                
+                if (budgetPriorityMap[answers.budget] && budgetPriorityMap[answers.budget].includes(timber.budgetCategory)) {
+                    score += 25;
+                } else if (answers.budget === 'value-focused' && timber.budgetCategory === 'premium') {
+                    score += 15; // Partial match for value-focused with premium
+                } else if (answers.budget === 'quality-focused' && timber.budgetCategory === 'luxury') {
+                    score += 15; // Partial match for quality-focused with luxury
                 }
                 
                 // Color preference (15 points)
