@@ -527,10 +527,61 @@
 
     <script>
         const timberData = {
+            "radiata-pine": {
+                species: "Radiata Pine",
+                colour: "Light",
+                colourDescription: "Pale cream to light yellow, even colour",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Good",
+                projectTypes: ["small-items", "turned-items", "carved-projects"],
+                experienceLevel: ["beginner"],
+                finishTypes: ["painted", "stained"],
+                features: ["Very affordable", "Easy to work", "Fast-growing sustainable"],
+                whyGood: "Perfect entry-level timber for learning woodworking with minimal investment.",
+                worthInvestment: "The most economical choice for practice projects and painted work.",
+                density: 510,
+                hardness: 2.5,
+                budgetCategory: "budget"
+            },
+            "kauri-pine": {
+                species: "Kauri Pine",
+                colour: "Light",
+                colourDescription: "Pale cream to light golden, fine texture",
+                grainCharacter: "Subtle",
+                workability: "Excellent",
+                finishQuality: "Very Good",
+                projectTypes: ["fine-furniture", "turned-items", "carved-projects"],
+                experienceLevel: ["beginner", "intermediate"],
+                finishTypes: ["natural", "stained", "painted"],
+                features: ["Easy to work", "Fine grain", "Good stability"],
+                whyGood: "Premium softwood with hardwood-like qualities, excellent for detailed work.",
+                worthInvestment: "Budget-friendly option offering surprisingly good quality for fine work.",
+                density: 530,
+                hardness: 3.1,
+                budgetCategory: "budget"
+            },
+            "african-bosse": {
+                species: "African Bosse",
+                colour: "Medium",
+                colourDescription: "Pale pink to medium brown, ages to warm orange-brown, attractive lustre",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Excellent",
+                projectTypes: ["fine-furniture", "cabinets", "small-items"],
+                experienceLevel: ["beginner", "intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Cedar-like aroma", "Excellent for exterior use", "Moderately durable", "Great workability"],
+                whyGood: "Versatile African hardwood offering excellent workability, natural durability, and beautiful appearance at an accessible price point.",
+                worthInvestment: "African Bosse delivers exceptional value as an easily worked timber with moderate natural durability and a beautiful appearance that ages gracefully from pale pink to warm brown tones. Its cedar-like qualities and excellent finishing properties make it perfect for both furniture and exterior applications.",
+                density: 560,
+                hardness: 3.8,
+                budgetCategory: "value"
+            },
             "tasmanian-oak": {
                 species: "Tasmanian Oak",
                 colour: "Light",
-                colourDescription: "Pale cream to light blonde tones with subtle pink undertones",
+                colourDescription: "Pale cream to light blonde with subtle pink undertones",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
                 finishQuality: "Very Good",
@@ -539,9 +590,10 @@
                 finishTypes: ["stained", "painted"],
                 features: ["Excellent for staining", "Even grain pattern", "Good dimensional stability"],
                 whyGood: "Perfect for painted or stained pieces with its clean, even grain pattern and excellent workability.",
+                worthInvestment: "Reliable Australian favourite offering consistent quality and beautiful finishing results.",
                 density: 650,
                 hardness: 4.9,
-                budgetCategory: "budget"
+                budgetCategory: "value"
             },
             "jarrah": {
                 species: "Jarrah",
@@ -555,6 +607,7 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Termite resistant", "Fire resistant", "Very durable"],
                 whyGood: "Exceptional durability and natural resistance make it perfect for high-quality furniture that will last generations.",
+                worthInvestment: "Jarrah's premium pricing reflects its extraordinary resilience, distinctive deep red colour, natural termite and fire resistance, and status as an iconic Australian heritage timber. Investing in Jarrah creates furniture that appreciates in value and lasts for generations.",
                 density: 835,
                 hardness: 8.5,
                 budgetCategory: "value"
@@ -571,9 +624,10 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Traditional furniture wood", "Excellent steam bending", "Prominent grain pattern"],
                 whyGood: "The classic choice for traditional furniture with beautiful grain patterns and superior steam bending properties.",
+                worthInvestment: "Timeless appeal and proven performance in classic furniture designs ensure lasting value.",
                 density: 750,
                 hardness: 6.0,
-                budgetCategory: "value"
+                budgetCategory: "premium"
             },
             "tasmanian-blackwood": {
                 species: "Tasmanian Blackwood",
@@ -587,6 +641,7 @@
                 finishTypes: ["natural"],
                 features: ["Fiddleback figure available", "Lustrous finish", "Premium appearance"],
                 whyGood: "Premium Australian timber with stunning grain patterns, perfect for high-end pieces and heirloom furniture.",
+                worthInvestment: "Tasmania's most prized native hardwood commands premium prices for its spectacular figured grain, lustrous finish, and heirloom quality that makes furniture worthy of passing down through generations.",
                 density: 640,
                 hardness: 5.9,
                 budgetCategory: "premium"
@@ -603,9 +658,10 @@
                 finishTypes: ["natural"],
                 features: ["Exotic appearance", "Natural oils", "Golden lustre"],
                 whyGood: "Exotic timber with natural oils and stunning golden appearance, perfect for standout pieces.",
+                worthInvestment: "Exotic appeal and natural oils provide built-in protection and stunning appearance.",
                 density: 650,
                 hardness: 4.7,
-                budgetCategory: "premium"
+                budgetCategory: "value"
             },
             "nsw-spotted-gum": {
                 species: "NSW Spotted Gum",
@@ -619,9 +675,10 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Excellent termite resistance", "Fire resistant", "High strength"],
                 whyGood: "Exceptional durability and strength make it ideal for heavy-duty furniture and high-traffic pieces.",
+                worthInvestment: "Premium hardness (Janka 11.0) and natural durability make this an investment in permanent quality.",
                 density: 950,
                 hardness: 11.0,
-                budgetCategory: "value"
+                budgetCategory: "premium"
             },
             "sydney-blue-gum": {
                 species: "Sydney Blue Gum",
@@ -651,9 +708,10 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Termite resistant", "Fire resistant", "Fast growth"],
                 whyGood: "Sustainable and durable Australian hardwood with excellent resistance properties and attractive appearance.",
+                worthInvestment: "Premium Australian hardwood combining sustainability with exceptional durability and fire resistance.",
                 density: 930,
                 hardness: 8.9,
-                budgetCategory: "value"
+                budgetCategory: "premium"
             },
             "canadian-rock-maple": {
                 species: "Canadian Rock Maple",
@@ -667,6 +725,7 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Food safe", "Fine even texture", "Excellent for detailed work"],
                 whyGood: "Perfect for kitchen items and detailed work with superior workability and food-safe properties.",
+                worthInvestment: "Food-safe certification and fine texture make it ideal for premium kitchenware.",
                 density: 705,
                 hardness: 6.45,
                 budgetCategory: "value"
@@ -683,9 +742,10 @@
                 finishTypes: ["natural", "stained"],
                 features: ["Sustainable plantation grown", "Traditional mahogany look", "Excellent workability"],
                 whyGood: "Sustainable alternative to traditional mahogany with excellent workability and classic appearance.",
+                worthInvestment: "Premium mahogany aesthetics with sustainable credentials and excellent workability justify its positioning.",
                 density: 570,
                 hardness: 3.6,
-                budgetCategory: "value"
+                budgetCategory: "premium"
             },
             "european-beech": {
                 species: "European Beech",
@@ -699,6 +759,7 @@
                 finishTypes: ["stained", "painted"],
                 features: ["Superior steam bending", "Fine uniform texture", "Traditional chair making"],
                 whyGood: "Ideal for bent furniture and traditional chair making with superior steam bending properties.",
+                worthInvestment: "Essential choice for curved work and traditional furniture making techniques.",
                 density: 710,
                 hardness: 6.46,
                 budgetCategory: "value"
@@ -715,6 +776,7 @@
                 finishTypes: ["natural"],
                 features: ["Luxury timber", "Ages beautifully", "Excellent workability"],
                 whyGood: "The gold standard for luxury furniture and heirloom pieces with unmatched beauty and workability.",
+                worthInvestment: "American Black Walnut is the ultimate luxury hardwood - its rich chocolate colour, superior workability, and prestigious reputation make it the first choice for investment-grade furniture and pieces destined to become family heirlooms.",
                 density: 610,
                 hardness: 4.49,
                 budgetCategory: "luxury"
@@ -731,6 +793,7 @@
                 finishTypes: ["natural"],
                 features: ["Extremely hard", "Exceptional durability", "High strength"],
                 whyGood: "Exceptionally hard and durable timber for demanding applications requiring maximum strength and longevity.",
+                worthInvestment: "Ironbark's incredible hardness (Janka 16.0) ensures pieces that last generations, justifying its premium positioning through unmatched durability.",
                 density: 1106,
                 hardness: 16.0,
                 budgetCategory: "value"
@@ -747,6 +810,7 @@
                 finishTypes: ["natural"],
                 features: ["Natural pest resistance", "Anti-bacterial properties", "Unique appearance"],
                 whyGood: "Natural pest resistance makes it perfect for storage boxes and chests with unique character.",
+                worthInvestment: "Built-in moth and pest resistance adds practical long-term value.",
                 density: 790,
                 hardness: 5.5,
                 budgetCategory: "value"
@@ -763,6 +827,7 @@
                 finishTypes: ["natural"],
                 features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
                 whyGood: "Ages to a rich, deep colour and offers exceptional carving properties for fine furniture pieces.",
+                worthInvestment: "The living timber that improves with age - Cherry darkens to gorgeous deep tones over years.",
                 density: 680,
                 hardness: 4.5,
                 budgetCategory: "premium"
@@ -779,9 +844,27 @@
                 finishTypes: ["natural"],
                 features: ["Distinctive silver grain", "Lightweight for strength", "Unique appearance"],
                 whyGood: "Distinctive silvery grain creates stunning visual interest perfect for feature furniture pieces.",
+                worthInvestment: "Unique silvery ray fleck appearance makes every piece a conversation starter.",
                 density: 580,
                 hardness: 5.5,
                 budgetCategory: "value"
+            },
+            "qld-maple": {
+                species: "QLD Maple (Flindersia)",
+                colour: "Light",
+                colourDescription: "Pale cream to pinkish-brown, fine lustrous appearance",
+                grainCharacter: "Moderate",
+                workability: "Excellent",
+                finishQuality: "Premium",
+                projectTypes: ["fine-furniture", "cabinets", "turned-items"],
+                experienceLevel: ["intermediate", "advanced"],
+                finishTypes: ["natural", "stained"],
+                features: ["Rare Australian species", "Beautiful figure", "Premium finish", "Highly sought after"],
+                whyGood: "Rare and beautiful Australian timber prized for fine furniture and speciality applications.",
+                worthInvestment: "QLD Maple's increasing rarity and exceptional beauty position it as an investment timber for collectors and fine craftspeople.",
+                density: 560,
+                hardness: 4.5,
+                budgetCategory: "luxury"
             }
         };
 
@@ -803,7 +886,7 @@
             colour: {
                 "light": "Light Woods - Cream, blonde, pale tones",
                 "medium": "Medium Tones - Golden, honey, light brown",
-                "dark": "Dark Woods - Rich reds, deep browns, chocolate"
+                "dark": "Dark Woods - Rich reds, deep browns, chocolate (Jarrah, Blackwood, Walnut)"
             },
             grain: {
                 "subtle": "Subtle Grain - Clean, uniform appearance",
@@ -987,12 +1070,18 @@
                 } else if (answers.budget === 'value-focused' && (timber.budgetCategory === 'budget' || timber.budgetCategory === 'value')) {
                     score += 25;
                     breakdown.budget = 25;
-                } else if (answers.budget === 'quality-focused' && (timber.budgetCategory === 'premium' || timber.budgetCategory === 'value')) {
+                } else if (answers.budget === 'quality-focused' && (timber.budgetCategory === 'premium' || timber.budgetCategory === 'luxury' || timber.budgetCategory === 'value')) {
                     score += 25;
                     breakdown.budget = 25;
                 } else if (answers.budget === 'perfect-wood') {
-                    score += 15;
-                    breakdown.budget = 15;
+                    // When seeking the perfect wood, premium and luxury timbers score higher
+                    if (timber.budgetCategory === 'premium' || timber.budgetCategory === 'luxury') {
+                        score += 20;
+                        breakdown.budget = 20;
+                    } else {
+                        score += 15;
+                        breakdown.budget = 15;
+                    }
                 } else if (timber.budgetCategory === 'value') {
                     score += 15;
                     breakdown.budget = 15;
@@ -1134,6 +1223,13 @@
                         ${whyThisMatches}
                     </div>
 
+                    ${timber.worthInvestment ? `
+                    <div class="explanation-section" style="background: #fff8f0; border-left-color: #e65100;">
+                        <h3>💎 Worth the Investment</h3>
+                        <p>${timber.worthInvestment}</p>
+                    </div>
+                    ` : ''}
+
                     ${comparison}
 
                     <div class="feature-tags">
@@ -1170,12 +1266,12 @@
             if (breakdown.budget >= 15) {
                 const budgetLabel = questionLabels.budget[answers.budget];
                 const budgetExplanation = {
-                    'tight-budget': `your budget-conscious approach aligns perfectly with this ${timber.budgetCategory} timber, giving you excellent value`,
-                    'value-focused': `this ${timber.budgetCategory} timber offers the perfect balance of cost and quality you're looking for`,
-                    'quality-focused': `this ${timber.budgetCategory} timber delivers the premium quality you prioritize`,
-                    'perfect-wood': `this ${timber.budgetCategory} timber represents an excellent choice regardless of budget considerations`
+                    'tight-budget': `your budget-conscious approach aligns perfectly with this ${timber.budgetCategory} timber, delivering excellent value for money`,
+                    'value-focused': `this ${timber.budgetCategory} timber offers the optimal balance of investment and long-term quality you're seeking`,
+                    'quality-focused': `this ${timber.budgetCategory} timber delivers the superior quality and lasting value you prioritise. The investment reflects genuine material excellence and longevity`,
+                    'perfect-wood': `this ${timber.budgetCategory} timber represents outstanding value - ${timber.budgetCategory === 'premium' || timber.budgetCategory === 'luxury' ? 'its higher cost is offset by exceptional durability, aesthetic appeal, and long-term performance that makes it truly worth the investment' : 'an excellent choice for your project'}`
                 };
-                explanations.push(`<strong>Budget Alignment:</strong> ${budgetExplanation[answers.budget]}.`);
+                explanations.push(`<strong>Investment Value:</strong> ${budgetExplanation[answers.budget]}.`);
             }
 
             // Colour explanation
