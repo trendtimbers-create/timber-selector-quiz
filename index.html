@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Perfect Timber for Furniture Making | Trend Timbers</title>
-    <meta name="description" content="Discover the ideal wood species for your furniture project through our comprehensive timber selector quiz. Get personalized recommendations based on your project type, budget, and preferences.">
+    <title>Australian Timber Selector Quiz</title>
     <style>
         :root {
-            --primary-color: #055902;
-            --secondary-color: #c5aa7f;
-            --accent-color: #412e28;
-            --text-dark: #2C1810;
-            --text-light: #666;
-            --background: #FAF7F2;
-            --surface: #FFFFFF;
-            --border: #E0D5C7;
-            --success: #228B22;
-            --warning: #FF8C00;
-            --danger: #DC3545;
+            --primary-green: #055902;
+            --secondary-tan: #c5aa7f;
+            --light-bg: #f5f5f0;
+            --white: #ffffff;
+            --text-dark: #2c3e2f;
+            --text-light: #6b7c6e;
+            --border: #d4c4a8;
+            --success: #4caf50;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -27,729 +24,513 @@
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background-color: var(--background);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e8e3d6 100%);
             color: var(--text-dark);
-            line-height: 1.4;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 15px;
-            min-height: 100vh;
         }
 
-        .quiz-header {
+        .header {
             text-align: center;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: var(--surface);
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px var(--shadow);
         }
 
-        .quiz-header h1 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            font-weight: bold;
+        .header h1 {
+            color: var(--primary-green);
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
 
-        .quiz-header p {
-            font-size: 0.95rem;
+        .header p {
             color: var(--text-light);
-            max-width: 500px;
-            margin: 0 auto;
+            font-size: 1.1em;
         }
 
         .progress-container {
-            background: var(--surface);
-            border-radius: 8px;
-            padding: 0.8rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px var(--shadow);
         }
 
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: var(--border);
-            border-radius: 3px;
+            height: 12px;
+            background: var(--light-bg);
+            border-radius: 6px;
             overflow: hidden;
-            margin-bottom: 0.4rem;
+            margin-top: 10px;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
-        .progress-text {
-            text-align: center;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 0.85rem;
+            background: linear-gradient(90deg, var(--primary-green) 0%, var(--secondary-tan) 100%);
+            transition: width 0.3s ease;
+            border-radius: 6px;
         }
 
         .question-card {
-            background: var(--surface);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            display: none;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 8px var(--shadow);
+            margin-bottom: 20px;
+            animation: fadeIn 0.4s ease;
         }
 
-        .question-card.active {
-            display: block;
-            animation: slideIn 0.3s ease;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        .question-card h2 {
+            color: var(--primary-green);
+            font-size: 1.8em;
+            margin-bottom: 25px;
         }
 
-        .question-title {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-weight: bold;
-        }
-
-        .question-subtitle {
-            color: var(--text-light);
-            margin-bottom: 1.2rem;
-            font-size: 0.9rem;
-        }
-
-        .options-grid {
+        .options {
             display: grid;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
+            gap: 15px;
         }
 
         .option-btn {
-            background: var(--surface);
+            background: var(--white);
             border: 2px solid var(--border);
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 1em;
             color: var(--text-dark);
         }
 
         .option-btn:hover {
-            border-color: var(--secondary-color);
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-color: var(--secondary-tan);
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px var(--shadow);
         }
 
         .option-btn.selected {
-            border-color: var(--primary-color);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            background: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
         }
 
-        .option-title {
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-        }
-
-        .option-description {
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        .navigation {
+        .nav-buttons {
             display: flex;
+            gap: 15px;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 1.2rem;
+            margin-top: 30px;
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
+            padding: 15px 30px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            font-weight: 600;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: var(--primary-green);
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            background: #044501;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
         }
 
         .btn-secondary {
-            background: var(--surface);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            background: var(--secondary-tan);
+            color: var(--white);
         }
 
         .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
+            background: #b39a70;
+            transform: translateY(-2px);
         }
 
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .results-container {
-            display: none;
-        }
-
-        .results-container.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .results-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .results-title {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-        }
-
-        .recommendation-card {
-            background: var(--surface);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .recommendation-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .timber-image {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            object-fit: cover;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            flex-shrink: 0;
-        }
-
-        .timber-image-placeholder {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .timber-info {
-            flex: 1;
-        }
-
-        .recommendation-rank {
-            background: var(--primary-color);
-            color: white;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 0.4rem;
-            font-size: 0.8rem;
-        }
-
-        .timber-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-        }
-
-        .timber-category {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 0.8rem;
-            text-transform: capitalize;
-        }
-
-        .timber-properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .property {
-            background: var(--background);
-            padding: 0.5rem;
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .property-label {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            margin-bottom: 0.2rem;
-        }
-
-        .property-value {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 0.8rem;
-        }
-
-        .why-perfect {
-            background: rgba(34, 139, 34, 0.1);
-            border-left: 3px solid var(--success);
-            padding: 0.8rem;
-            border-radius: 4px;
-            margin-bottom: 0.8rem;
-            font-size: 0.85rem;
-        }
-
-        .features-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-tag {
-            background: var(--secondary-color);
-            color: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-        }
-
-        .contact-section {
-            background: var(--surface);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .contact-title {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            display: none;
-        }
-
-        .loading.active {
-            display: block;
-        }
-
-        .loading-spinner {
-            width: 35px;
-            height: 35px;
-            border: 3px solid var(--border);
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 0.8rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .quiz-header {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .quiz-header h1 {
-                font-size: 1.5rem;
-            }
-
-            .quiz-header p {
-                font-size: 0.85rem;
-            }
-
-            .question-card {
-                padding: 1rem;
-            }
-
-            .question-title {
-                font-size: 1.2rem;
-            }
-
-            .option-btn {
-                padding: 0.8rem;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 200px;
-                padding: 0.7rem;
-                font-size: 0.85rem;
-            }
-
-            .recommendation-header {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-                gap: 0.8rem;
-            }
-
-            .timber-image,
-            .timber-image-placeholder {
-                width: 60px;
-                height: 60px;
-            }
-
-            .timber-properties {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.4rem;
-            }
-
-            .progress-container {
-                padding: 0.6rem;
-            }
-
-            .recommendation-card {
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 8px;
-            }
-
-            .quiz-header {
-                padding: 0.8rem;
-            }
-
-            .quiz-header h1 {
-                font-size: 1.3rem;
-            }
-
-            .question-card {
-                padding: 0.8rem;
-            }
-
-            .recommendation-card {
-                padding: 0.8rem;
-            }
-
-            .timber-properties {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.3rem;
-            }
-
-            .property {
-                padding: 0.4rem 0.2rem;
-            }
-
-            .property-label {
-                font-size: 0.65rem;
-            }
-
-            .property-value {
-                font-size: 0.75rem;
-            }
-
-            .features-list {
-                gap: 0.2rem;
-            }
-
-            .feature-tag {
-                padding: 0.15rem 0.4rem;
-                font-size: 0.6rem;
-            }
-
-            .why-perfect {
-                padding: 0.6rem;
-                font-size: 0.8rem;
-            }
         }
 
         .hidden {
-            display: none !important;
+            display: none;
+        }
+
+        .results-section {
+            animation: fadeIn 0.6s ease;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px var(--shadow);
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .result-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rank-badge {
+            background: var(--primary-green);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .timber-name {
+            font-size: 1.8em;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        .budget-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .budget-budget {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .budget-value {
+            background: #f1f8e9;
+            color: #558b2f;
+        }
+
+        .budget-premium {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .budget-luxury {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .match-score {
+            margin: 20px 0;
+        }
+
+        .match-percentage {
+            font-size: 2em;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .match-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .match-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, var(--primary-green) 100%);
+            transition: width 1s ease;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .property-item {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .property-label {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .property-value {
+            color: var(--text-dark);
+            font-size: 1.1em;
+        }
+
+        .explanation-section {
+            background: #f9f9f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-tan);
+        }
+
+        .explanation-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .explanation-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .explanation-section ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .explanation-section li {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .comparison-section {
+            background: #fffbf5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .comparison-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .feature-tag {
+            background: var(--secondary-tan);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .validation-panel {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px var(--shadow);
+            border: 3px solid var(--primary-green);
+        }
+
+        .validation-panel h2 {
+            color: var(--primary-green);
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .requirements-summary {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .requirements-summary h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .requirement-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .requirement-item:last-child {
+            border-bottom: none;
+        }
+
+        .requirement-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .requirement-value {
+            color: var(--text-light);
+        }
+
+        .compatibility-matrix {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .matrix-table th {
+            background: var(--primary-green);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background: var(--light-bg);
+        }
+
+        .match-icon {
+            font-size: 1.5em;
+        }
+
+        .match-full {
+            color: var(--success);
+        }
+
+        .match-partial {
+            color: var(--secondary-tan);
+        }
+
+        .match-none {
+            color: #e74c3c;
+        }
+
+        .scoring-explanation {
+            background: #f9f9f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .scoring-explanation h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .scoring-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .timber-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .question-card {
+                padding: 25px;
+            }
+
+            .result-card {
+                padding: 20px;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Quiz Header -->
-        <div class="quiz-header">
-            <h1>🪵 Find Your Perfect Timber</h1>
-            <p>Get timber recommendations for your furniture project in 6 quick questions.</p>
+        <div class="header">
+            <h1>🪵 Australian Timber Selector</h1>
+            <p>Find the perfect timber for your woodworking project</p>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
+        <div id="progressSection" class="progress-container hidden">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Progress</span>
+                <span id="progressText">Question 1 of 6</span>
+            </div>
             <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="progress-text" id="progressText">Ready to Start</div>
-        </div>
-
-        <!-- Question 1: Project Type -->
-        <div class="question-card active" id="question1">
-            <h2 class="question-title">What type of furniture project are you making?</h2>
-            <p class="question-subtitle">Choose the category that best describes your project:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="fine-furniture">
-                    <div class="option-title">Fine Furniture</div>
-                    <div class="option-description">Dining tables, chairs, dressers, bedroom sets</div>
-                </div>
-                <div class="option-btn" data-value="cabinets">
-                    <div class="option-title">Cabinets & Storage</div>
-                    <div class="option-description">Kitchen cabinets, wardrobes, built-in storage</div>
-                </div>
-                <div class="option-btn" data-value="small-items">
-                    <div class="option-title">Small Items</div>
-                    <div class="option-description">Jewelry boxes, picture frames, decorative pieces</div>
-                </div>
-                <div class="option-btn" data-value="turned-items">
-                    <div class="option-title">Turned Items</div>
-                    <div class="option-description">Bowls, vases, spindles, lamp bases</div>
-                </div>
-                <div class="option-btn" data-value="carved-projects">
-                    <div class="option-title">Carved Projects</div>
-                    <div class="option-description">Sculptures, decorative carvings, artistic pieces</div>
-                </div>
-                <div class="option-btn" data-value="kitchen-items">
-                    <div class="option-title">Kitchen Items</div>
-                    <div class="option-description">Cutting boards, utensils, serving pieces</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <div></div>
-                <button class="btn btn-primary" id="next1" disabled>Next Question</button>
+                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
             </div>
         </div>
 
-        <!-- Question 2: Budget Priority -->
-        <div class="question-card" id="question2">
-            <h2 class="question-title">How important is the budget to you?</h2>
-            <p class="question-subtitle">This helps us balance cost vs. quality in our recommendations:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="tight-budget">
-                    <div class="option-title">I'm on a tight budget</div>
-                    <div class="option-description">Cost is my main concern - I need affordable options</div>
-                </div>
-                <div class="option-btn" data-value="value-focused">
-                    <div class="option-title">I want good value for money</div>
-                    <div class="option-description">Balance of quality and reasonable pricing is important</div>
-                </div>
-                <div class="option-btn" data-value="quality-focused">
-                    <div class="option-title">Quality is more important than price</div>
-                    <div class="option-description">I'm willing to pay more for the right timber</div>
-                </div>
-                <div class="option-btn" data-value="perfect-wood">
-                    <div class="option-title">I'm after the perfect wood for my application</div>
-                    <div class="option-description">Price is not the deciding factor - I want the best match</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <button class="btn btn-secondary" id="back2">← Back</button>
-                <button class="btn btn-primary" id="next2" disabled>Next Question</button>
-            </div>
-        </div>
-
-        <!-- Question 3: Color Preference -->
-        <div class="question-card" id="question3">
-            <h2 class="question-title">What wood color/tone do you prefer?</h2>
-            <p class="question-subtitle">Choose the color palette that matches your vision:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="light">
-                    <div class="option-title">Light Woods</div>
-                    <div class="option-description">Cream, blonde, pale tones (Oak, Maple, Beech)</div>
-                </div>
-                <div class="option-btn" data-value="medium">
-                    <div class="option-title">Medium Tones</div>
-                    <div class="option-description">Golden, honey, light brown (Rosewood, Silky Oak)</div>
-                </div>
-                <div class="option-btn" data-value="dark">
-                    <div class="option-title">Dark Woods</div>
-                    <div class="option-description">Chocolate, walnut, deep browns (Blackwood, Cherry)</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <button class="btn btn-secondary" id="back3">← Back</button>
-                <button class="btn btn-primary" id="next3" disabled>Next Question</button>
-            </div>
-        </div>
-
-        <!-- Question 4: Grain Character -->
-        <div class="question-card" id="question4">
-            <h2 class="question-title">How important is grain character to your project?</h2>
-            <p class="question-subtitle">The grain pattern affects the final appearance:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="subtle">
-                    <div class="option-title">Subtle Grain</div>
-                    <div class="option-description">Clean, minimal patterns - great for painted pieces</div>
-                </div>
-                <div class="option-btn" data-value="moderate">
-                    <div class="option-title">Moderate Grain</div>
-                    <div class="option-description">Some character without being overpowering</div>
-                </div>
-                <div class="option-btn" data-value="dramatic">
-                    <div class="option-title">Dramatic Grain</div>
-                    <div class="option-description">Bold patterns and figured wood features</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <button class="btn btn-secondary" id="back4">← Back</button>
-                <button class="btn btn-primary" id="next4" disabled>Next Question</button>
-            </div>
-        </div>
-
-        <!-- Question 5: Experience Level -->
-        <div class="question-card" id="question5">
-            <h2 class="question-title">What's your woodworking experience level?</h2>
-            <p class="question-subtitle">This helps us recommend timbers suited to your skill level:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="beginner">
-                    <div class="option-title">Beginner</div>
-                    <div class="option-description">Prefer easy-to-work, forgiving woods</div>
-                </div>
-                <div class="option-btn" data-value="intermediate">
-                    <div class="option-title">Intermediate</div>
-                    <div class="option-description">Can handle some challenging properties</div>
-                </div>
-                <div class="option-btn" data-value="advanced">
-                    <div class="option-title">Advanced</div>
-                    <div class="option-description">Comfortable working with difficult woods</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <button class="btn btn-secondary" id="back5">← Back</button>
-                <button class="btn btn-primary" id="next5" disabled>Next Question</button>
-            </div>
-        </div>
-
-        <!-- Question 6: Finish Type -->
-        <div class="question-card" id="question6">
-            <h2 class="question-title">What finish are you planning?</h2>
-            <p class="question-subtitle">Your intended finish affects which timber works best:</p>
-            <div class="options-grid">
-                <div class="option-btn" data-value="natural">
-                    <div class="option-title">Natural/Clear Finish</div>
-                    <div class="option-description">Showcase the natural wood grain and color</div>
-                </div>
-                <div class="option-btn" data-value="stained">
-                    <div class="option-title">Stained Finish</div>
-                    <div class="option-description">Enhance or change the wood color</div>
-                </div>
-                <div class="option-btn" data-value="painted">
-                    <div class="option-title">Painted Finish</div>
-                    <div class="option-description">Wood grain visibility not important</div>
-                </div>
-            </div>
-            <div class="navigation">
-                <button class="btn btn-secondary" id="back6">← Back</button>
-                <button class="btn btn-primary" id="calculate">Get My Recommendations!</button>
-            </div>
-        </div>
-
-        <!-- Loading Screen -->
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <h3>Analyzing Your Preferences...</h3>
-            <p>Finding the perfect timber matches for your project</p>
-        </div>
-
-        <!-- Results Section -->
-        <div class="results-container" id="results">
-            <div class="results-header">
-                <h2 class="results-title">🎯 Your Perfect Timber Matches</h2>
-                <p>Based on your preferences, here are our top recommendations:</p>
-            </div>
-            <div id="recommendationsList"></div>
-            
-            <div class="contact-section">
-                <h3 class="contact-title">Ready to Start Your Project?</h3>
-                <p>Contact Trend Timbers to discuss your specific needs, check availability, and get current pricing for your recommended timber species.</p>
-                <div class="contact-buttons">
-                    <a href="https://trendtimbers.com.au/dressed-timber-price-list/" class="btn btn-primary" target="_blank">View Full Price List</a>
-                    <a href="tel:+6145775244" class="btn btn-secondary">Call Us Now</a>
-                    <button class="btn btn-secondary" id="restartQuiz">Take Quiz Again</button>
-                </div>
-            </div>
-        </div>
+        <div id="quizSection"></div>
+        <div id="resultsSection" class="hidden"></div>
     </div>
 
     <script>
-        // Complete timber database with all species from original data
-        const timberDatabase = {
+        const timberData = {
             "tasmanian-oak": {
                 species: "Tasmanian Oak",
-                image: "images/tasmanian-oak.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Pale cream to light blonde tones with subtle pink undertones",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
                 finishQuality: "Very Good",
@@ -764,8 +545,8 @@
             },
             "jarrah": {
                 species: "Jarrah",
-                image: "images/jarrah.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Rich red to reddish-brown, ranging from light red to deep brick red, darkens with age",
                 grainCharacter: "Moderate",
                 workability: "Good",
                 finishQuality: "Excellent",
@@ -780,8 +561,8 @@
             },
             "american-oak": {
                 species: "American Oak",
-                image: "images/american-oak.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Pale blonde to light golden brown with warm undertones",
                 grainCharacter: "Moderate",
                 workability: "Excellent",
                 finishQuality: "Excellent",
@@ -796,8 +577,8 @@
             },
             "tasmanian-blackwood": {
                 species: "Tasmanian Blackwood",
-                image: "images/tasmanian-blackwood.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Deep chocolate brown to golden brown with darker streaks, can have reddish tones",
                 grainCharacter: "Dramatic",
                 workability: "Good",
                 finishQuality: "Excellent",
@@ -812,8 +593,8 @@
             },
             "new-guinea-rosewood": {
                 species: "New Guinea Rosewood",
-                image: "images/new-guinea-rosewood.jpg",
-                color: "Medium",
+                colour: "Medium",
+                colourDescription: "Golden honey to warm amber with natural lustre",
                 grainCharacter: "Dramatic",
                 workability: "Good",
                 finishQuality: "Excellent",
@@ -828,8 +609,8 @@
             },
             "nsw-spotted-gum": {
                 species: "NSW Spotted Gum",
-                image: "images/nsw-spotted-gum.jpg",
-                color: "Medium",
+                colour: "Medium",
+                colourDescription: "Light to medium brown with grey undertones and natural colour variation",
                 grainCharacter: "Moderate",
                 workability: "Good",
                 finishQuality: "Excellent",
@@ -844,8 +625,8 @@
             },
             "sydney-blue-gum": {
                 species: "Sydney Blue Gum",
-                image: "images/sydney-blue-gum.jpg",
-                color: "Medium",
+                colour: "Medium",
+                colourDescription: "Medium pink to reddish brown with distinct colour variation",
                 grainCharacter: "Moderate",
                 workability: "Good",
                 finishQuality: "Very Good",
@@ -860,8 +641,8 @@
             },
             "nsw-blackbutt": {
                 species: "NSW Blackbutt",
-                image: "images/nsw-blackbutt.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Pale blonde to light golden brown, even colour",
                 grainCharacter: "Moderate",
                 workability: "Good",
                 finishQuality: "Excellent",
@@ -876,8 +657,8 @@
             },
             "canadian-rock-maple": {
                 species: "Canadian Rock Maple",
-                image: "images/canadian-rock-maple.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Creamy white to pale blonde with subtle grain",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
                 finishQuality: "Very Good",
@@ -892,8 +673,8 @@
             },
             "fijian-mahogany": {
                 species: "Fijian Mahogany",
-                image: "images/fijian-mahogany.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Reddish-brown to deep brown with warm mahogany tones",
                 grainCharacter: "Moderate",
                 workability: "Excellent",
                 finishQuality: "Very Good",
@@ -908,8 +689,8 @@
             },
             "european-beech": {
                 species: "European Beech",
-                image: "images/european-beech.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Pale cream to light pinkish-brown",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
                 finishQuality: "Good",
@@ -924,8 +705,8 @@
             },
             "american-black-walnut": {
                 species: "American Black Walnut",
-                image: "images/american-black-walnut.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Rich chocolate brown to deep purplish-brown, straight grain beauty",
                 grainCharacter: "Moderate",
                 workability: "Excellent",
                 finishQuality: "Premium",
@@ -940,8 +721,8 @@
             },
             "ironbark": {
                 species: "Ironbark",
-                image: "images/ironbark.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Deep dark red to red-brown, very dense appearance",
                 grainCharacter: "Subtle",
                 workability: "Difficult",
                 finishQuality: "Good",
@@ -956,8 +737,8 @@
             },
             "camphor-laurel": {
                 species: "Camphor Laurel",
-                image: "images/camphor-laurel.jpg",
-                color: "Light",
+                colour: "Light",
+                colourDescription: "Light golden-brown to pale yellow with subtle figure",
                 grainCharacter: "Moderate",
                 workability: "Good",
                 finishQuality: "Good",
@@ -972,8 +753,8 @@
             },
             "american-black-cherry": {
                 species: "American Black Cherry",
-                image: "images/american-black-cherry.jpg",
-                color: "Dark",
+                colour: "Dark",
+                colourDescription: "Light reddish-brown ageing to rich deep red-brown over time",
                 grainCharacter: "Subtle",
                 workability: "Excellent",
                 finishQuality: "Premium",
@@ -981,367 +762,618 @@
                 experienceLevel: ["intermediate", "advanced"],
                 finishTypes: ["natural"],
                 features: ["Darkens beautifully with age", "Excellent for carving", "Premium finish quality"],
-                whyGood: "Ages to a rich, deep color and offers exceptional carving properties for fine furniture pieces.",
-                density: 560,
-                hardness: 4.23,
+                whyGood: "Ages to a rich, deep colour and offers exceptional carving properties for fine furniture pieces.",
+                density: 680,
+                hardness: 4.5,
                 budgetCategory: "premium"
-            },
-            "qld-maple": {
-                species: "Queensland Maple",
-                image: "images/qld-maple.jpg",
-                color: "Medium",
-                grainCharacter: "Dramatic",
-                workability: "Good",
-                finishQuality: "Excellent",
-                projectTypes: ["fine-furniture", "small-items"],
-                experienceLevel: ["advanced"],
-                finishTypes: ["natural"],
-                features: ["Figured grain patterns", "Lustrous sheen", "Fiddleback available"],
-                whyGood: "Premium Australian timber with exceptional figured grain patterns for showcase pieces.",
-                density: 575,
-                hardness: 4.7,
-                budgetCategory: "luxury"
             },
             "silky-oak": {
                 species: "Silky Oak",
-                image: "images/silky-oak.jpg",
-                color: "Medium",
+                colour: "Medium",
+                colourDescription: "Pinkish to reddish-brown with distinctive silvery grain",
                 grainCharacter: "Dramatic",
                 workability: "Good",
-                finishQuality: "Good",
-                projectTypes: ["small-items"],
-                experienceLevel: ["intermediate"],
+                finishQuality: "Very Good",
+                projectTypes: ["fine-furniture", "small-items"],
+                experienceLevel: ["intermediate", "advanced"],
                 finishTypes: ["natural"],
-                features: ["Lacewood-like figure", "Distinctive appearance", "Easy to work"],
-                whyGood: "Unique lacewood-like appearance perfect for decorative items and picture frames.",
-                density: 550,
-                hardness: 3.7,
+                features: ["Distinctive silver grain", "Lightweight for strength", "Unique appearance"],
+                whyGood: "Distinctive silvery grain creates stunning visual interest perfect for feature furniture pieces.",
+                density: 580,
+                hardness: 5.5,
                 budgetCategory: "value"
-            },
-            "kauri-pine": {
-                species: "Kauri Pine",
-                image: "images/kauri-pine.jpg",
-                color: "Light",
-                grainCharacter: "Subtle",
-                workability: "Excellent",
-                finishQuality: "Good",
-                projectTypes: ["small-items"],
-                experienceLevel: ["beginner"],
-                finishTypes: ["painted", "stained"],
-                features: ["Clear straight grain", "Easy to work", "Knot-free"],
-                whyGood: "Perfect for beginners with clear grain and excellent workability, ideal for painted projects.",
-                density: 540,
-                hardness: 3.23,
-                budgetCategory: "budget"
-            },
-            "radiata-pine": {
-                species: "Radiata Pine",
-                image: "images/radiata-pine.jpg",
-                color: "Light",
-                grainCharacter: "Subtle",
-                workability: "Excellent",
-                finishQuality: "Good",
-                projectTypes: ["cabinets", "small-items"],
-                experienceLevel: ["beginner"],
-                finishTypes: ["painted", "stained"],
-                features: ["Budget friendly", "Easy to work", "Widely available"],
-                whyGood: "Most affordable option that's perfect for beginners, painted projects, or practice pieces.",
-                density: 550,
-                hardness: 2.5,
-                budgetCategory: "budget"
             }
         };
 
-        // Quiz state
-        let currentQuestion = 1;
+        const questionLabels = {
+            project: {
+                "fine-furniture": "Fine Furniture (tables, chairs, cabinets)",
+                "cabinets": "Cabinets & Storage",
+                "kitchen-items": "Kitchen Items (boards, utensils)",
+                "small-items": "Small Items & Boxes",
+                "turned-items": "Turned Items (bowls, pens)",
+                "carved-projects": "Carved Projects"
+            },
+            budget: {
+                "tight-budget": "Budget-conscious - most affordable options",
+                "value-focused": "Value-focused - balance of cost and quality",
+                "quality-focused": "Quality-focused - premium materials",
+                "perfect-wood": "Find the perfect wood regardless of cost"
+            },
+            colour: {
+                "light": "Light Woods - Cream, blonde, pale tones",
+                "medium": "Medium Tones - Golden, honey, light brown",
+                "dark": "Dark Woods - Rich reds, deep browns, chocolate"
+            },
+            grain: {
+                "subtle": "Subtle Grain - Clean, uniform appearance",
+                "moderate": "Moderate Grain - Visible character",
+                "dramatic": "Dramatic Grain - Bold patterns and figured wood"
+            },
+            experience: {
+                "beginner": "Beginner - new to woodworking",
+                "intermediate": "Intermediate - comfortable with tools",
+                "advanced": "Advanced - experienced craftsperson"
+            },
+            finish: {
+                "natural": "Natural/Oil finish - show the wood's character",
+                "stained": "Stained - enhance or change colour",
+                "painted": "Painted - opaque colour finish"
+            }
+        };
+
+        const questions = [
+            {
+                id: 'project',
+                question: 'What type of project are you working on?',
+                options: [
+                    { value: 'fine-furniture', label: questionLabels.project['fine-furniture'] },
+                    { value: 'cabinets', label: questionLabels.project['cabinets'] },
+                    { value: 'kitchen-items', label: questionLabels.project['kitchen-items'] },
+                    { value: 'small-items', label: questionLabels.project['small-items'] },
+                    { value: 'turned-items', label: questionLabels.project['turned-items'] },
+                    { value: 'carved-projects', label: questionLabels.project['carved-projects'] }
+                ]
+            },
+            {
+                id: 'budget',
+                question: "What's your budget priority?",
+                options: [
+                    { value: 'tight-budget', label: questionLabels.budget['tight-budget'] },
+                    { value: 'value-focused', label: questionLabels.budget['value-focused'] },
+                    { value: 'quality-focused', label: questionLabels.budget['quality-focused'] },
+                    { value: 'perfect-wood', label: questionLabels.budget['perfect-wood'] }
+                ]
+            },
+            {
+                id: 'colour',
+                question: 'What colour timber do you prefer?',
+                options: [
+                    { value: 'light', label: questionLabels.colour['light'] },
+                    { value: 'medium', label: questionLabels.colour['medium'] },
+                    { value: 'dark', label: questionLabels.colour['dark'] }
+                ]
+            },
+            {
+                id: 'grain',
+                question: 'What grain character appeals to you?',
+                options: [
+                    { value: 'subtle', label: questionLabels.grain['subtle'] },
+                    { value: 'moderate', label: questionLabels.grain['moderate'] },
+                    { value: 'dramatic', label: questionLabels.grain['dramatic'] }
+                ]
+            },
+            {
+                id: 'experience',
+                question: 'What is your woodworking experience level?',
+                options: [
+                    { value: 'beginner', label: questionLabels.experience['beginner'] },
+                    { value: 'intermediate', label: questionLabels.experience['intermediate'] },
+                    { value: 'advanced', label: questionLabels.experience['advanced'] }
+                ]
+            },
+            {
+                id: 'finish',
+                question: 'What type of finish will you use?',
+                options: [
+                    { value: 'natural', label: questionLabels.finish['natural'] },
+                    { value: 'stained', label: questionLabels.finish['stained'] },
+                    { value: 'painted', label: questionLabels.finish['painted'] }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
         let answers = {};
-        const totalQuestions = 6;
 
-        // Initialize quiz
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            updateProgress();
-        });
-
-        function setupEventListeners() {
-            // Option selection handlers
-            for (let i = 1; i <= totalQuestions; i++) {
-                const questionDiv = document.getElementById(`question${i}`);
-                const options = questionDiv.querySelectorAll('.option-btn');
-                const nextBtn = document.getElementById(`next${i}`) || document.getElementById('calculate');
-                
-                options.forEach(option => {
-                    option.addEventListener('click', () => selectOption(i, option, nextBtn));
-                });
-
-                if (i > 1) {
-                    const backBtn = document.getElementById(`back${i}`);
-                    if (backBtn) {
-                        backBtn.addEventListener('click', () => goToPrevious(i));
-                    }
-                }
-            }
-
-            // Special handler for final question
-            const calculateBtn = document.getElementById('calculate');
-            if (calculateBtn) {
-                calculateBtn.addEventListener('click', calculateResults);
-            }
-
-            // Restart quiz handler
-            const restartBtn = document.getElementById('restartQuiz');
-            if (restartBtn) {
-                restartBtn.addEventListener('click', restartQuiz);
-            }
+        function startQuiz() {
+            currentQuestion = 0;
+            answers = {};
+            document.getElementById('progressSection').classList.remove('hidden');
+            showQuestion();
         }
 
-        function selectOption(questionNum, selectedOption, nextBtn) {
-            const questionDiv = document.getElementById(`question${questionNum}`);
-            const options = questionDiv.querySelectorAll('.option-btn');
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
             
-            // Remove selection from all options
-            options.forEach(opt => opt.classList.remove('selected'));
-            
-            // Add selection to clicked option
-            selectedOption.classList.add('selected');
-            
-            // Store answer
-            const questionKey = getQuestionKey(questionNum);
-            answers[questionKey] = selectedOption.dataset.value;
-            
-            // Enable next button
-            nextBtn.disabled = false;
-            
-            // Auto-advance after short delay (except on last question)
-            if (questionNum < totalQuestions) {
-                setTimeout(() => {
-                    goToNext(questionNum);
-                }, 300);
-            }
-        }
-
-        function getQuestionKey(questionNum) {
-            const keys = ['project', 'budget', 'color', 'grain', 'experience', 'finish'];
-            return keys[questionNum - 1];
-        }
-
-        function goToNext(currentNum) {
-            const currentCard = document.getElementById(`question${currentNum}`);
-            const nextCard = document.getElementById(`question${currentNum + 1}`);
-            
-            currentCard.classList.remove('active');
-            nextCard.classList.add('active');
-            
-            currentQuestion = currentNum + 1;
-            updateProgress();
-        }
-
-        function goToPrevious(currentNum) {
-            const currentCard = document.getElementById(`question${currentNum}`);
-            const previousCard = document.getElementById(`question${currentNum - 1}`);
-            
-            currentCard.classList.remove('active');
-            previousCard.classList.add('active');
-            
-            currentQuestion = currentNum - 1;
-            updateProgress();
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = 
-                currentQuestion <= totalQuestions ? 
-                `Question ${currentQuestion} of ${totalQuestions}` : 
-                'Complete!';
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+
+            const quizSection = document.getElementById('quizSection');
+            quizSection.innerHTML = `
+                <div class="question-card">
+                    <h2>${question.question}</h2>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <button class="option-btn" onclick="selectAnswer('${question.id}', '${option.value}')">
+                                ${option.label}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                            ← Previous
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                            ${currentQuestion === questions.length - 1 ? 'See Results' : 'Next →'}
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            if (answers[question.id]) {
+                highlightSelectedOption(question.id, answers[question.id]);
+            }
+        }
+
+        function selectAnswer(questionId, value) {
+            answers[questionId] = value;
+            highlightSelectedOption(questionId, value);
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function highlightSelectedOption(questionId, value) {
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.textContent.trim() === questionLabels[questionId][value]) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
         }
 
         function calculateResults() {
-            // Show loading screen
-            document.getElementById('question6').classList.remove('active');
-            document.getElementById('loading').classList.add('active');
-            
-            // Simulate processing time
-            setTimeout(() => {
-                const recommendations = getRecommendations();
-                displayResults(recommendations);
-                
-                document.getElementById('loading').classList.remove('active');
-                document.getElementById('results').classList.add('active');
-                updateProgress();
-            }, 2000);
-        }
+            const scores = [];
 
-        function getRecommendations() {
-            const scores = {};
-            
-            // Calculate compatibility scores for each timber
-            Object.entries(timberDatabase).forEach(([key, timber]) => {
+            for (const [timberId, timber] of Object.entries(timberData)) {
                 let score = 0;
-                let maxScore = 0;
-                
-                // Project type match (40 points)
-                maxScore += 40;
+                const breakdown = {};
+
+                // Project type (40 points)
                 if (timber.projectTypes.includes(answers.project)) {
                     score += 40;
+                    breakdown.project = 40;
                 } else if (
                     (answers.project === 'fine-furniture' && timber.projectTypes.includes('cabinets')) ||
                     (answers.project === 'cabinets' && timber.projectTypes.includes('fine-furniture'))
                 ) {
-                    score += 20; // Partial match
+                    score += 20;
+                    breakdown.project = 20;
+                } else {
+                    breakdown.project = 0;
                 }
-                
-                // Budget priority compatibility (25 points)
-                maxScore += 25;
-                const budgetPriorityMap = {
-                    'tight-budget': ['budget'],
-                    'value-focused': ['budget', 'value'],
-                    'quality-focused': ['value', 'premium'],
-                    'perfect-wood': ['premium', 'luxury']
-                };
-                
-                if (budgetPriorityMap[answers.budget] && budgetPriorityMap[answers.budget].includes(timber.budgetCategory)) {
+
+                // Budget (25 points)
+                if (answers.budget === 'tight-budget' && timber.budgetCategory === 'budget') {
                     score += 25;
-                } else if (answers.budget === 'value-focused' && timber.budgetCategory === 'premium') {
-                    score += 15; // Partial match for value-focused with premium
-                } else if (answers.budget === 'quality-focused' && timber.budgetCategory === 'luxury') {
-                    score += 15; // Partial match for quality-focused with luxury
-                }
-                
-                // Color preference (15 points)
-                maxScore += 15;
-                if (timber.color.toLowerCase() === answers.color) {
+                    breakdown.budget = 25;
+                } else if (answers.budget === 'value-focused' && (timber.budgetCategory === 'budget' || timber.budgetCategory === 'value')) {
+                    score += 25;
+                    breakdown.budget = 25;
+                } else if (answers.budget === 'quality-focused' && (timber.budgetCategory === 'premium' || timber.budgetCategory === 'value')) {
+                    score += 25;
+                    breakdown.budget = 25;
+                } else if (answers.budget === 'perfect-wood') {
                     score += 15;
+                    breakdown.budget = 15;
+                } else if (timber.budgetCategory === 'value') {
+                    score += 15;
+                    breakdown.budget = 15;
+                } else {
+                    breakdown.budget = 0;
                 }
-                
+
+                // Colour (15 points)
+                if (timber.colour.toLowerCase() === answers.colour) {
+                    score += 15;
+                    breakdown.colour = 15;
+                } else {
+                    breakdown.colour = 0;
+                }
+
                 // Grain character (10 points)
-                maxScore += 10;
                 if (timber.grainCharacter.toLowerCase() === answers.grain) {
                     score += 10;
+                    breakdown.grain = 10;
+                } else {
+                    breakdown.grain = 0;
                 }
-                
+
                 // Experience level (5 points)
-                maxScore += 5;
                 if (timber.experienceLevel.includes(answers.experience)) {
                     score += 5;
+                    breakdown.experience = 5;
+                } else {
+                    breakdown.experience = 0;
                 }
-                
-                // Finish compatibility (5 points)
-                maxScore += 5;
+
+                // Finish type (5 points)
                 if (timber.finishTypes.includes(answers.finish)) {
                     score += 5;
+                    breakdown.finish = 5;
+                } else {
+                    breakdown.finish = 0;
                 }
-                
-                scores[key] = {
-                    timber: timber,
-                    score: score,
-                    percentage: (score / maxScore) * 100
-                };
-            });
+
+                scores.push({
+                    timberId,
+                    timber,
+                    score,
+                    percentage: Math.round((score / 100) * 100),
+                    breakdown
+                });
+            }
+
+            // Sort by score
+            scores.sort((a, b) => b.score - a.score);
+
+            // Filter to show top matches (at least 70% match)
+            const topMatches = scores.filter(s => s.percentage >= 70).slice(0, 5);
             
-            // Sort by score and return top 3
-            return Object.entries(scores)
-                .sort(([,a], [,b]) => b.score - a.score)
-                .slice(0, 3)
-                .map(([key, data]) => data);
+            // If less than 3 results with 70%+, show top 5 regardless
+            const resultsToShow = topMatches.length >= 3 ? topMatches : scores.slice(0, 5);
+
+            displayResults(resultsToShow, scores);
         }
 
-        function displayResults(recommendations) {
-            const container = document.getElementById('recommendationsList');
-            container.innerHTML = '';
+        function displayResults(results, allScores) {
+            document.getElementById('progressSection').classList.add('hidden');
+            document.getElementById('quizSection').classList.add('hidden');
             
-            recommendations.forEach((rec, index) => {
-                const timber = rec.timber;
-                const card = document.createElement('div');
-                card.className = 'recommendation-card';
-                
-                // Determine category display name
-                const categoryNames = {
-                    'budget': 'Affordable Choice',
-                    'value': 'Great Value',
-                    'premium': 'Premium Quality',
-                    'luxury': 'Luxury Timber'
-                };
-                
-                card.innerHTML = `
-                    <div class="recommendation-header">
-                        ${timber.image ? 
-                            `<img src="${timber.image}" alt="${timber.species}" class="timber-image" onerror="this.outerHTML='<div class=timer-image-placeholder>🪵</div>'">` :
-                            `<div class="timber-image-placeholder">🪵</div>`
-                        }
-                        <div class="timber-info">
-                            <div class="recommendation-rank">${index + 1}</div>
-                            <h3 class="timber-name">${timber.species}</h3>
-                            <div class="timber-category">${categoryNames[timber.budgetCategory] || timber.budgetCategory}</div>
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.classList.remove('hidden');
+
+            let html = '<div class="results-section">';
+            html += '<div class="header"><h1>Your Perfect Timber Matches</h1><p>Based on your project requirements</p></div>';
+
+            results.forEach((result, index) => {
+                const rankSuffix = index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th';
+                html += generateResultCard(result, index + 1, rankSuffix, results, allScores);
+            });
+
+            html += generateValidationPanel(results, allScores);
+            html += '</div>';
+
+            resultsSection.innerHTML = html;
+
+            // Animate match bars
+            setTimeout(() => {
+                document.querySelectorAll('.match-bar-fill').forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                });
+            }, 100);
+        }
+
+        function generateResultCard(result, rank, rankSuffix, allResults, allScores) {
+            const { timber, percentage, breakdown } = result;
+            
+            const whyThisMatches = generateWhyThisMatches(result);
+            const comparison = generateComparison(result, allResults, allScores, rank);
+
+            return `
+                <div class="result-card">
+                    <div class="result-header">
+                        <div class="result-title">
+                            <div class="rank-badge">${rank}${rankSuffix}</div>
+                            <div>
+                                <div class="timber-icon">🪵</div>
+                                <div class="timber-name">${timber.species}</div>
+                            </div>
+                        </div>
+                        <div class="budget-badge budget-${timber.budgetCategory}">
+                            ${timber.budgetCategory.charAt(0).toUpperCase() + timber.budgetCategory.slice(1)}
                         </div>
                     </div>
-                    
-                    <div class="timber-properties">
-                        <div class="property">
+
+                    <div class="match-score">
+                        <div class="match-percentage">${percentage}% Match</div>
+                        <div class="match-bar">
+                            <div class="match-bar-fill" data-width="${percentage}" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="properties-grid">
+                        <div class="property-item">
+                            <div class="property-label">Colour</div>
+                            <div class="property-value">${timber.colour}</div>
+                        </div>
+                        <div class="property-item">
                             <div class="property-label">Workability</div>
                             <div class="property-value">${timber.workability}</div>
                         </div>
-                        <div class="property">
+                        <div class="property-item">
                             <div class="property-label">Finish Quality</div>
                             <div class="property-value">${timber.finishQuality}</div>
                         </div>
-                        <div class="property">
+                        <div class="property-item">
                             <div class="property-label">Grain Character</div>
                             <div class="property-value">${timber.grainCharacter}</div>
                         </div>
-                        <div class="property">
-                            <div class="property-label">Match Score</div>
-                            <div class="property-value">${rec.percentage.toFixed(0)}%</div>
-                        </div>
                     </div>
-                    
-                    <div class="why-perfect">
-                        <strong>Why this is perfect for you:</strong><br>
-                        ${timber.whyGood}
+
+                    <div class="explanation-section">
+                        <h3>🎯 Why This Timber Matches Your Needs</h3>
+                        ${whyThisMatches}
                     </div>
-                    
-                    <div class="features-list">
-                        ${timber.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+
+                    ${comparison}
+
+                    <div class="feature-tags">
+                        ${timber.features.map(f => `<div class="feature-tag">${f}</div>`).join('')}
                     </div>
-                `;
-                
-                container.appendChild(card);
-            });
+
+                    <div style="margin-top: 20px; padding: 15px; background: var(--light-bg); border-radius: 8px;">
+                        <p style="font-size: 0.95em; color: var(--text-light); margin: 0;">
+                            <strong>Colour Details:</strong> ${timber.colourDescription}
+                        </p>
+                        <p style="font-size: 0.9em; color: var(--text-light); margin-top: 10px;">
+                            <strong>Technical:</strong> Density ${timber.density} kg/m³ | Janka Hardness ${timber.hardness}
+                        </p>
+                    </div>
+                </div>
+            `;
         }
 
-        function restartQuiz() {
-            // Reset state
-            currentQuestion = 1;
-            answers = {};
-            
-            // Hide results
-            document.getElementById('results').classList.remove('active');
-            
-            // Show first question
-            document.querySelectorAll('.question-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            document.getElementById('question1').classList.add('active');
-            
-            // Reset all selections
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            
-            // Reset all next buttons
-            for (let i = 1; i <= totalQuestions; i++) {
-                const nextBtn = document.getElementById(`next${i}`) || document.getElementById('calculate');
-                if (nextBtn) {
-                    nextBtn.disabled = true;
+        function generateWhyThisMatches(result) {
+            const { timber, breakdown } = result;
+            let explanations = [];
+
+            // Project type explanation
+            if (breakdown.project >= 20) {
+                const projectLabel = questionLabels.project[answers.project];
+                if (breakdown.project === 40) {
+                    explanations.push(`<strong>Perfect Project Match:</strong> You selected "${projectLabel}", and ${timber.species} is specifically ideal for this type of work. ${timber.whyGood}`);
+                } else {
+                    explanations.push(`<strong>Good Project Fit:</strong> You selected "${projectLabel}", and ${timber.species} works well for similar applications. ${timber.whyGood}`);
                 }
             }
-            
-            // Update progress
-            updateProgress();
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
+
+            // Budget explanation
+            if (breakdown.budget >= 15) {
+                const budgetLabel = questionLabels.budget[answers.budget];
+                const budgetExplanation = {
+                    'tight-budget': `your budget-conscious approach aligns perfectly with this ${timber.budgetCategory} timber, giving you excellent value`,
+                    'value-focused': `this ${timber.budgetCategory} timber offers the perfect balance of cost and quality you're looking for`,
+                    'quality-focused': `this ${timber.budgetCategory} timber delivers the premium quality you prioritize`,
+                    'perfect-wood': `this ${timber.budgetCategory} timber represents an excellent choice regardless of budget considerations`
+                };
+                explanations.push(`<strong>Budget Alignment:</strong> ${budgetExplanation[answers.budget]}.`);
+            }
+
+            // Colour explanation
+            if (breakdown.colour === 15) {
+                const colourLabel = questionLabels.colour[answers.colour].split(' - ')[0];
+                explanations.push(`<strong>Colour Perfect Match:</strong> The ${colourLabel.toLowerCase()} you prefer matches beautifully with ${timber.species}'s ${timber.colourDescription}.`);
+            }
+
+            // Grain explanation
+            if (breakdown.grain === 10) {
+                const grainLabel = questionLabels.grain[answers.grain].split(' - ')[0];
+                explanations.push(`<strong>Grain Character:</strong> The ${grainLabel.toLowerCase()} grain pattern you selected perfectly aligns with this timber's ${timber.grainCharacter.toLowerCase()} grain character.`);
+            }
+
+            // Experience explanation
+            if (breakdown.experience === 5) {
+                const expLabel = questionLabels.experience[answers.experience];
+                const workabilityNote = timber.workability === 'Excellent' ? 'very easy to work with' : 
+                                       timber.workability === 'Good' ? 'manageable with proper technique' : 
+                                       'suitable for your skill level';
+                explanations.push(`<strong>Skill Level Match:</strong> As a ${expLabel.toLowerCase()}, you'll find this timber ${workabilityNote} (${timber.workability} workability).`);
+            }
+
+            // Finish explanation
+            if (breakdown.finish === 5) {
+                const finishLabel = questionLabels.finish[answers.finish].split(' - ')[0];
+                explanations.push(`<strong>Finish Compatibility:</strong> Your choice of ${finishLabel.toLowerCase()} finish works perfectly with this timber, as it naturally accepts this type of finish beautifully.`);
+            }
+
+            return explanations.map(exp => `<p>${exp}</p>`).join('');
         }
+
+        function generateComparison(result, allResults, allScores, currentRank) {
+            if (currentRank >= allResults.length) return '';
+
+            const nextResult = allResults[currentRank];
+            const scoreDiff = result.percentage - nextResult.percentage;
+            const currentTimber = result.timber;
+            const nextTimber = nextResult.timber;
+
+            let comparisonPoints = [];
+
+            // Compare project type
+            if (result.breakdown.project > nextResult.breakdown.project) {
+                comparisonPoints.push(`${currentTimber.species} is specifically designed for ${questionLabels.project[answers.project].toLowerCase()}, while ${nextTimber.species} is better suited for other applications`);
+            }
+
+            // Compare colour match
+            if (result.breakdown.colour > nextResult.breakdown.colour) {
+                comparisonPoints.push(`${currentTimber.species} matches your preferred ${answers.colour} colour exactly, whereas ${nextTimber.species} is ${nextTimber.colour.toLowerCase()}`);
+            }
+
+            // Compare budget
+            if (result.breakdown.budget > nextResult.breakdown.budget) {
+                comparisonPoints.push(`${currentTimber.species} better aligns with your ${questionLabels.budget[answers.budget].toLowerCase()}`);
+            }
+
+            // Compare grain
+            if (result.breakdown.grain > nextResult.breakdown.grain) {
+                comparisonPoints.push(`the ${currentTimber.grainCharacter.toLowerCase()} grain pattern matches your preference, unlike ${nextTimber.species}'s ${nextTimber.grainCharacter.toLowerCase()} grain`);
+            }
+
+            // Compare experience
+            if (result.breakdown.experience > nextResult.breakdown.experience) {
+                comparisonPoints.push(`${currentTimber.species} is better suited to your ${answers.experience} skill level`);
+            }
+
+            // If no specific points, create a general comparison
+            if (comparisonPoints.length === 0) {
+                comparisonPoints.push(`${currentTimber.species} scored ${scoreDiff}% higher overall due to better alignment with your combined requirements`);
+            }
+
+            const comparisonText = comparisonPoints.slice(0, 2).join(', and ');
+
+            return `
+                <div class="comparison-section">
+                    <h3>📊 How This Compares to ${nextTimber.species}</h3>
+                    <p>${currentTimber.species} ranked ${scoreDiff}% higher than ${nextTimber.species} because ${comparisonText}. Both are excellent timbers, but ${currentTimber.species} provides a better overall match for your specific project needs.</p>
+                </div>
+            `;
+        }
+
+        function generateValidationPanel(results, allScores) {
+            return `
+                <div class="validation-panel">
+                    <h2>✓ Does This Match Your Vision?</h2>
+                    
+                    <div class="requirements-summary">
+                        <h3>Your Project Requirements</h3>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Project Type:</span>
+                            <span class="requirement-value">${questionLabels.project[answers.project]}</span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Budget:</span>
+                            <span class="requirement-value">${questionLabels.budget[answers.budget]}</span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Colour Preference:</span>
+                            <span class="requirement-value">${questionLabels.colour[answers.colour]}</span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Grain Character:</span>
+                            <span class="requirement-value">${questionLabels.grain[answers.grain]}</span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Experience Level:</span>
+                            <span class="requirement-value">${questionLabels.experience[answers.experience]}</span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="requirement-label">Finish Type:</span>
+                            <span class="requirement-value">${questionLabels.finish[answers.finish]}</span>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary-green); margin: 25px 0 15px 0;">Compatibility Matrix</h3>
+                    <div class="compatibility-matrix">
+                        <table class="matrix-table">
+                            <thead>
+                                <tr>
+                                    <th>Timber</th>
+                                    <th>Project</th>
+                                    <th>Budget</th>
+                                    <th>Colour</th>
+                                    <th>Grain</th>
+                                    <th>Experience</th>
+                                    <th>Finish</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${results.map(result => `
+                                    <tr>
+                                        <td style="font-weight: 600; text-align: left;">${result.timber.species}</td>
+                                        <td>${getMatchIcon(result.breakdown.project, 40)}</td>
+                                        <td>${getMatchIcon(result.breakdown.budget, 25)}</td>
+                                        <td>${getMatchIcon(result.breakdown.colour, 15)}</td>
+                                        <td>${getMatchIcon(result.breakdown.grain, 10)}</td>
+                                        <td>${getMatchIcon(result.breakdown.experience, 5)}</td>
+                                        <td>${getMatchIcon(result.breakdown.finish, 5)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="scoring-explanation">
+                        <h3>How We Calculate Matches</h3>
+                        <p style="margin-bottom: 15px;">Each timber is scored out of 100 points based on how well it matches your requirements:</p>
+                        <div class="scoring-item">
+                            <span>Project Type Match:</span>
+                            <strong>40 points</strong>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Budget Compatibility:</span>
+                            <strong>25 points</strong>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Colour Preference:</span>
+                            <strong>15 points</strong>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Grain Character:</span>
+                            <strong>10 points</strong>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Experience Level:</span>
+                            <strong>5 points</strong>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Finish Compatibility:</span>
+                            <strong>5 points</strong>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn btn-primary" onclick="startQuiz()" style="padding: 15px 40px; font-size: 1.1em;">
+                            🔄 Try Different Options
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getMatchIcon(score, maxScore) {
+            const percentage = (score / maxScore) * 100;
+            if (percentage === 100) {
+                return '<span class="match-icon match-full">✓</span>';
+            } else if (percentage >= 50) {
+                return '<span class="match-icon match-partial">◐</span>';
+            } else if (percentage > 0) {
+                return '<span class="match-icon match-partial">○</span>';
+            } else {
+                return '<span class="match-icon match-none">✗</span>';
+            }
+        }
+
+        // Start the quiz on page load
+        startQuiz();
     </script>
 </body>
 </html>
